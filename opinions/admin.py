@@ -4,7 +4,7 @@ from models import Thing, Opinion
 class ThingAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
-class OpinionAdmin(admin.modelAdmin):
+class OpinionAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(Thing, ThingAdmin)
