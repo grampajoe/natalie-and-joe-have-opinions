@@ -1,1 +1,27 @@
 {% extends 'opinions/base.html' %}
+{% block content %}
+	<h2>{{ thing.name }}</h2>
+	{% if thing.description %}<div class="description">{{ thing.description }}</div>{% endif %}
+	{% for opinion in thing.get_opinions %}
+	<div class="opinion {% cycle 'natalie' 'joe' %}">
+		{% if opinion %}
+		<div class="meta">
+			<span class="date">{{ opinion.date }}</span> by {{ opinion.user.first_name }}
+		</div>
+		<div class="rating">{{ opinion.rating }}</div>
+		{% if opinion.summary %}<div class="summary">{{ opinion.summary }}</div>{% endif %}
+		<div class="review">{{ opinion.review }}</div>
+		{% else %}
+		<p class="error">{% cycle 'Natalie' 'Joe' %} doesn't have an opinion about this yet!</p>
+		{% endif %}
+	</div>
+	{% endfor %}
+	{% if thing.thing_set %}
+	<h3>Things in this category:</h3>
+	<ul class="children">
+		{% for child in thing.thing_set.all %}
+		<li><a href="{{ child.get_absolute_url }}">{{ child }}</a></li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+{% endblock %}

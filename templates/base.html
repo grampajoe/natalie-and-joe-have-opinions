@@ -2,10 +2,15 @@
 <html>
 <head>
 	<title>Natalie and Joe Have Opinions About Literally Everything</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/style.css" />
 </head>
 <body>
-	<div id="content">
-		{% block content %}
-		{% endblock %}
+	<div id="wrapper">
+		<div id="header">
+		</div>
+		<div id="content">
+			{% block content %}
+			{% endblock %}
+		</div>
 	</div>
 </body>

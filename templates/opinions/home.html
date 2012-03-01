@@ -1,1 +1,15 @@
 {% extends 'opinions/base.html' %}
+{% block content %}
+	<h2>Welcome!</h2>
+	<p class="intro">An intro to what the heck is going on.</p>
+	<h3>Recent Opinions</h3>
+	{% if recent_opinions %}
+	<ul class="opinions">
+		{% for opinion in recent_opinions %}
+		<li><a href="{{ opinion.get_absolute_url }}">{{ opinion }}</a></li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<p class="error">No opinions!</p>
+	{% endif %}
+{% endblock %}
