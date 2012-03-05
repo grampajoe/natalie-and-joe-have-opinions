@@ -12,4 +12,14 @@
 	{% else %}
 	<p class="error">No opinions!</p>
 	{% endif %}
+	<h3>Random Things</h3>
+	{% if random_things %}
+	<ul class="things">
+		{% for thing in random_things %}
+		<li><a href="{{ thing.get_absolute_url }}">{{ thing }}</a></li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<p class="error">No things!</p>
+	{% endif %}
 {% endblock %}

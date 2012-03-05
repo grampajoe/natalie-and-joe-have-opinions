@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import random
 
 class Thing(models.Model):
     """A Thing we have Opinions about."""
@@ -16,6 +17,16 @@ class Thing(models.Model):
             except:
                 opinions.append(None)
         return opinions
+
+    @staticmethod
+    def get_random():
+        n = 10
+        count = Thing.objects.all().count()
+        if (count >= 10):
+            start = random.random() * (count - 10)
+        else:
+            start = 0
+        return Thing.objects.all()[start:start+10]
 
     def __unicode__(self):
         return unicode(self.name)

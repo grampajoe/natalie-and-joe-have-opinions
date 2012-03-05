@@ -6,9 +6,10 @@ from models import Thing, Opinion
 def home(request):
     """Home view with a little introduction and maybe some aggregate data."""
     recent_opinions = Opinion.objects.all()[:10]
+    random_things = Thing.get_random()
     return render_to_response('opinions/home.html', {'recent_opinions':
-            recent_opinions},
-            context_instance=RequestContext(request))
+        recent_opinions, 'random_things': random_things},
+        context_instance=RequestContext(request))
 
 def thing(request, thing_slug=None):
     """View a thing and the things they encompass."""
