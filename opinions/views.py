@@ -23,3 +23,7 @@ def thing(request, thing_slug=None):
     return render_to_response('opinions/thing.html', {'thing': thing,
             'things': things},
             context_instance=RequestContext(request))
+
+def search(request):
+    return render_to_response('opinions/search.html',
+            context_instance=RequestContext(request))

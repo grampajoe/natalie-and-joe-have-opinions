@@ -6,8 +6,9 @@ class Thing(models.Model):
     """A Thing we have Opinions about."""
     parent = models.ForeignKey('Thing', blank=True, null=True)
     name = models.CharField(max_length=256)
-    slug = models.SlugField()
+    slug = models.SlugField(db_index=True, unique=True)
     description = models.CharField(max_length=256, blank=True)
+    tags = models.ManyToManyField('Tag', blank=True)
 
     def get_opinions(self):
         opinions = []
@@ -20,13 +21,17 @@ class Thing(models.Model):
 
     @staticmethod
     def get_random():
-        n = 10
+        n = 2
         count = Thing.objects.all().count()
-        if (count >= 10):
-            start = random.random() * (count - 10)
+        if (count >= n):
+            things = set([])
+            max_id = Thing.objects.aggregate(models.Max('id'))['id__max']
+            while len(things) < n:
+                ids = random.sample(xrange(1, max_id+1), n)
+                things.update(Thing.objects.filter(id__in=ids))
+            return list(things)
         else:
-            start = 0
-        return Thing.objects.all()[start:start+10]
+            return Thing.objects.order_by('?')
 
     def __unicode__(self):
         return unicode(self.name)
@@ -48,7 +53,11 @@ class Opinion(models.Model):
     review = models.TextField()
     
     def __unicode__(self):
-        return u'{0} by {1}'.format(self.thing.name, self.user.username)
+        if len(self.summary):
+            return u'{0} on {1}: "{2}"'.format(self.user.first_name,
+                    self.thing.name, self.summary)
+        else:
+            return u'{0} on {1}'.format(self.user.first_name, self.thing.name)
 
     def get_absolute_url(self):
         return self.thing.get_absolute_url()
@@ -56,3 +65,12 @@ class Opinion(models.Model):
     class Meta(object):
         ordering = ['-date']
         unique_together = ('user', 'thing')
+
+class Tag(models.Model):
+    name = models.CharField(max_length=64, primary_key=True)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta(object):
+        pass
