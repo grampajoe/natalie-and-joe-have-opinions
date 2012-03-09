@@ -1,0 +1,22 @@
+{% extends 'opinions/base.html' %}
+{% block content %}
+<h2>{{ versus }}</h2>
+{% for opinion in versus.get_opinions %}
+<div class="versus opinion {% cycle 'natalie' 'joe' as first_name %}">
+	{% if opinion %}
+	<div class="meta">
+		<span class="date">{{ opinion.date }}</span> by {{ first_name|capfirst }}
+	</div>
+	{% if opinion.summary %}<div class="summary">{{ opinion.summary }}</div>{% endif %}
+	<div class="review">{{ opinion.review }}</div>
+	{% if opinion.winner %}
+	<div class="winner">{{ opinion.winner }}</div>
+	{% else %}
+	<div class="draw">Draw!</div>
+	{% endif %}
+	{% else %}
+	<p class="error">{{ first_name|capfirst }} hasn't compared these things yet!</p>
+	{% endif %}
+</div>
+{% endfor %}
+{% endblock %}
