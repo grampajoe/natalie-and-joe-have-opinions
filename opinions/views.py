@@ -2,7 +2,8 @@ from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.http import Http404
-from models import Thing, Opinion, Tag, Versus
+from models import Thing, Opinion, Tag, Versus, VersusOpinion
+from django.db.models import Q
 
 def home(request):
     """Home view with a little introduction and maybe some aggregate data."""
@@ -36,6 +37,18 @@ def versus(request, slug1, slug2):
     return render_to_response('opinions/versus.html', {'versus': v},
             context_instance=RequestContext(request))
 
-def search(request):
-    return render_to_response('opinions/search.html',
+def tag(request, name):
+    tag = get_object_or_404(Tag, name=name)
+    return render_to_response('opinions/tag.html', {'tag': tag},
             context_instance=RequestContext(request))
+
+def search(request, term):
+    """Oh boy."""
+    things = Thing.objects.filter(Q(tags__name__icontains=term) |
+            Q(name__icontains=term))
+    tags = Tag.objects.filter(name__icontains=term)
+
+    results = {'things': things, 'tags': tags}
+
+    return render_to_response('opinions/search.html', {'term': term, 'results':
+        results}, context_instance=RequestContext(request))

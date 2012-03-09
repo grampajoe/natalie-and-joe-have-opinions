@@ -131,7 +131,11 @@ class Tag(models.Model):
     name = models.SlugField(max_length=64, primary_key=True)
 
     def __unicode__(self):
-        return self.name
+        return u'#{0}'.format(self.name)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('tag', [self.name])
 
     class Meta(object):
         ordering = ['name']

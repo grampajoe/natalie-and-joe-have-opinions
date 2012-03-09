@@ -1,6 +1,6 @@
 {% extends 'opinions/base.html' %}
 {% block content %}
-<h2>{{ versus }}</h2>
+<h2><a href="{{ versus.thing_one.get_absolute_url }}">{{ versus.thing_one }}</a> vs. <a href="{{ versus.thing_two.get_absolute_url }}">{{ versus.thing_two }}</a></h2>
 {% for opinion in versus.get_opinions %}
 <div class="versus opinion {% cycle 'natalie' 'joe' as first_name %}">
 	{% if opinion %}
@@ -10,7 +10,7 @@
 	{% if opinion.summary %}<div class="summary">{{ opinion.summary }}</div>{% endif %}
 	<div class="review">{{ opinion.review }}</div>
 	{% if opinion.winner %}
-	<div class="winner">{{ opinion.winner }}</div>
+	<div class="winner"><a href="{% url thing opinion.winner.slug %}">{{ opinion.winner }}</a></div>
 	{% else %}
 	<div class="draw">Draw!</div>
 	{% endif %}

@@ -1,0 +1,23 @@
+{% extends 'opinions/base.html' %}
+{% block content %}
+<h2>{{ tag }}</h2>
+{% if tag.thing_set.count %}
+<h3>Things</h3>
+<ul class="things">
+	{% for thing in tag.thing_set.all %}
+	<li><a href="{{ thing.get_absolute_url }}">{{ thing }}</a></li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% if tag.opinion_set.count %}
+<h3>Opinions</h3>
+<ul class="opinions">
+	{% for opinion in tag.opinion_set.all %}
+	<li><a href="{{ opinion.get_absolute_url }}">{{ opinion }}</a></li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% if not tag.thing_set.count and not tag.opinion_set.count %}
+<p class="error">Nothing tagged with {{ tag }}!</p>
+{% endif %}
+{% endblock %}
