@@ -4,11 +4,9 @@
 	<title>Natalie and Joe Have Opinions About Literally Everything</title>
 	<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/style.css" />
 </head>
-<body>
+<body class="{% block body-class %}{% endblock %}">
 	<div id="wrapper">
-		<div id="header">
-			<h1><a href="{% url home %}">Natalie and Joe Have Opinions about Literally Everything</a></h1>
-		</div>
+		{% include 'header.html' %}
 		<div id="content">
 			{% block content %}
 			{% endblock %}

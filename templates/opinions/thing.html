@@ -2,13 +2,6 @@
 {% block content %}
 	<h2>{{ thing.name }}</h2>
 	{% if thing.description %}<div class="description">{{ thing.description }}</div>{% endif %}
-	{% if thing.tags.count %}
-	<ul class="tags">
-		{% for tag in thing.tags.all %}
-		<li><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></li>
-		{% endfor %}
-	</ul>
-	{% endif %}
 	{% for opinion in thing.get_opinions %}
 	<div class="opinion {% cycle 'natalie' 'joe' as first_name %}">
 		{% if opinion %}
@@ -17,13 +10,6 @@
 		<div class="review">{{ opinion.review }}</div>
 		<div class="meta">
 			<span class="date">{{ opinion.date }}</span> by {{ first_name|capfirst }}
-			{% if opinion.tags.count %}
-			<ul class="tags">
-				{% for tag in opinion.tags.all %}
-				<li><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></li>
-				{% endfor %}
-			</ul>
-			{% endif %}
 		</div>
 		{% else %}
 		<p class="error">{{ first_name|capfirst }} doesn't have an opinion about this yet!</p>

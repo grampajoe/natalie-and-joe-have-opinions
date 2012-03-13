@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import Thing, Opinion, Tag, Versus, VersusOpinion
+from models import Thing, Opinion, Versus, VersusOpinion
 
 class OpinionInline(admin.StackedInline):
     model = Opinion
@@ -22,4 +22,3 @@ class VersusAdmin(admin.ModelAdmin):
 
 admin.site.register(Thing, ThingAdmin)
 admin.site.register(Versus, VersusAdmin)
-admin.site.register(Tag)

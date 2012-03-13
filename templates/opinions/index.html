@@ -4,7 +4,7 @@
 {% if things %}
 <ul class="things">
 {% for thing in things %}
-	<li><a href="{% thing.get_absolute_url %}">{{ thing }}</a></li>
+	<li><a href="{{ thing.get_absolute_url }}">{{ thing }}</a></li>
 {% endfor %}
 </ul>
 {% else %}

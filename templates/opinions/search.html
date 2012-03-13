@@ -1,23 +1,14 @@
 {% extends 'opinions/base.html' %}
 {% block content %}
 <h2>Search: "<span class="search_term">{{ term }}</span>"</h2>
-{% if results.things %}
+{% if things.count %}
 <h3>Things</h3>
 <ul class="things">
-	{% for thing in results.things %}
+	{% for thing in things %}
 	<li><a href="{{ thing.get_absolute_url }}">{{ thing }}</a></li>
 	{% endfor %}
 </ul>
-{% endif %}
-{% if results.tags %}
-<h3>Tags</h3>
-<ul class="tags">
-	{% for tag in results.tags %}
-	<li><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></li>
-	{% endfor %}
-</ul>
-{% endif %}
-{% if not results.things and not results.tags %}
+{% else %}
 <p class="error">No results found!</p>
 {% endif %}
 {% endblock %}

@@ -6,10 +6,8 @@ class Thing(models.Model):
     """A Thing we have Opinions about."""
     parent = models.ForeignKey('Thing', blank=True, null=True,
             related_name='children')
-    name = models.CharField(max_length=256)
-    slug = models.SlugField(db_index=True, unique=True)
-    description = models.CharField(max_length=256, blank=True)
-    tags = models.ManyToManyField('Tag', blank=True)
+    name = models.CharField(max_length=256, db_index=True, unique=True)
+    slug = models.SlugField(primary_key=True)
     versus = models.ManyToManyField('Thing', through='Versus',
             symmetrical=False)
 
@@ -31,7 +29,7 @@ class Thing(models.Model):
     def get_random():
         n = 10
         count = Thing.objects.all().count()
-        if (count >= n):
+        if (count > n):
             things = set([])
             max_id = Thing.objects.aggregate(models.Max('id'))['id__max']
             while len(things) < n:
@@ -57,7 +55,6 @@ class Review(models.Model):
     date = models.DateField(auto_now_add=True)
     summary = models.CharField(max_length=256, blank=True)
     review = models.TextField()
-    tags = models.ManyToManyField('Tag', blank=True)
 
     class Meta(object):
         abstract = True
@@ -85,8 +82,6 @@ class Opinion(Review):
 class Versus(models.Model):
     thing_one = models.ForeignKey('Thing', related_name='versus_one')
     thing_two = models.ForeignKey('Thing', related_name='versus_two')
-    description = models.CharField(max_length=256, blank=True)
-    tags = models.ManyToManyField('Tag', blank=True)
 
     @staticmethod
     def get_by_slugs(slug1, slug2):
@@ -126,16 +121,3 @@ class VersusOpinion(Review):
 
     class Meta(object):
         unique_together = ('user', 'versus')
-
-class Tag(models.Model):
-    name = models.SlugField(max_length=64, primary_key=True)
-
-    def __unicode__(self):
-        return u'#{0}'.format(self.name)
-
-    @models.permalink
-    def get_absolute_url(self):
-        return ('tag', [self.name])
-
-    class Meta(object):
-        ordering = ['name']
