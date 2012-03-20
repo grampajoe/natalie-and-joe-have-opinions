@@ -10,6 +10,8 @@ urlpatterns = patterns('',
     url(r'^things/', include('opinions.urls')),
     url(r'^search/(.*)$', 'opinions.views.search', name='search'),
     url(r'^search$', 'opinions.views.search', name='search_blank'),
+    
+    url(r'autocomplete/(.*)$', 'opinions.views.autocomplete', name='autocomplete'),
 
     url(r'^admin/', include(admin.site.urls)),
 )

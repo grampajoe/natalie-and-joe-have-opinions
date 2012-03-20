@@ -1,9 +1,11 @@
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
 from django.contrib.auth.models import User
-from django.http import Http404
+from django.http import HttpResponse, Http404
 from models import Thing, Opinion, Versus, VersusOpinion
 from django.db.models import Q
+from django.core import serializers
+import json
 
 def home(request):
     """Home view with a little introduction and maybe some aggregate data."""
@@ -47,3 +49,10 @@ def search(request, term=None):
 
     return render_to_response('opinions/search.html', {'term': term, 'things':
         things}, context_instance=RequestContext(request))
+
+def autocomplete(request, partial):
+    things = Thing.objects.filter(name__istartswith=partial).order_by(
+            'name')[:10]
+
+    return HttpResponse(json.dumps(map(lambda thing: [thing.name,
+            thing.get_absolute_url()], things)), mimetype="application/json")

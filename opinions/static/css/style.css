@@ -11,6 +11,16 @@
 	padding:20px;
 }
 
+.search .results:hover
+{
+	cursor:pointer;
+}
+
+.search .results .selected
+{
+	background:#faf;
+}
+
 #content
 {
 	
