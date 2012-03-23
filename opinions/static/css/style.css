@@ -8,10 +8,67 @@
 
 #header
 {
-	padding:20px;
+	width:798px;
+	border:1px solid #000;
 }
 
-.search .results:hover
+#header h1
+{
+	float:left;
+	width:400px;
+	height:80px;
+}
+
+#header h1 a
+{
+	display:block;
+	width:100%;
+	height:0;
+	background:#fa0;
+	padding-top:80px;
+	overflow:hidden;
+}
+
+.search
+{
+	width:360px;
+	height:40px;
+	padding:20px 20px 20px 0;
+	margin-left:420px;
+}
+
+.search input[type=text]
+{
+	width:278px;
+	height:24px;
+	padding:7px;
+	border:1px solid #000;
+	font:normal 20px/24px Arial,Helvetica,sans-serif;
+}
+
+.search input[type=submit]
+{
+	width:40px;
+	height:40px;
+	overflow:hidden;
+}
+
+.search .results
+{
+	position:absolute;
+	min-width:200px;
+	overflow:hidden;
+	border:1px solid #000;
+	background:#fff;
+	font:normal 20px/24px Arial,Helvetica,sans-serif;
+}
+
+.search .results li
+{
+	padding:3px 7px;
+}
+
+.search .results li:hover
 {
 	cursor:pointer;
 }
