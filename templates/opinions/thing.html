@@ -1,9 +1,9 @@
 {% extends 'opinions/base.html' %}
 {% block content %}
-	<h2>{{ thing.name }}</h2>
+	<h2 class="thing">{{ thing.name }}</h2>
 	{% if thing.description %}<div class="description">{{ thing.description }}</div>{% endif %}
 	{% for opinion in thing.get_opinions %}
-	<div class="opinion {% cycle 'natalie' 'joe' as first_name %}">
+	<div class="opinion split {% cycle 'left' 'right' %} {% cycle 'natalie' 'joe' as first_name %}">
 		{% if opinion %}
 		<div class="rating">{{ opinion.rating }}</div>
 		{% if opinion.summary %}<div class="summary">{{ opinion.summary }}</div>{% endif %}

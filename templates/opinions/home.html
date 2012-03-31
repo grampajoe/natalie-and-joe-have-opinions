@@ -1,24 +1,28 @@
 {% extends 'opinions/base.html' %}
 {% block body-class %}home{% endblock %}
 {% block content %}
-	<h2>Recent Opinions</h2>
-	{% if recent_opinions %}
-	<ul class="opinions">
-		{% for opinion in recent_opinions %}
-		<li><a href="{{ opinion.get_absolute_url }}">{{ opinion }}</a></li>
-		{% endfor %}
-	</ul>
-	{% else %}
-	<p class="error">No opinions!</p>
-	{% endif %}
-	<h2>Random Things</h2>
-	{% if random_things %}
-	<ul class="things">
-		{% for thing in random_things %}
-		<li><a href="{{ thing.get_absolute_url }}">{{ thing }}</a></li>
-		{% endfor %}
-	</ul>
-	{% else %}
-	<p class="error">No things!</p>
-	{% endif %}
+	<div id="recent" class="split left">
+		<h2>Recent Opinions</h2>
+		{% if recent_opinions %}
+		<ul>
+			{% for opinion in recent_opinions %}
+			<li><a href="{{ opinion.get_absolute_url }}">{{ opinion }}</a></li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p class="error">No opinions!</p>
+		{% endif %}
+	</div>
+	<div id="random" class="split right">
+		<h2>Random Things</h2>
+		{% if random_things %}
+		<ul>
+			{% for thing in random_things %}
+			<li><a href="{{ thing.get_absolute_url }}">{{ thing }}</a></li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p class="error">No things!</p>
+		{% endif %}
+	</div>
 {% endblock %}

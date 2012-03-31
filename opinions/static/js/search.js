@@ -17,11 +17,11 @@ function autocomplete(e)
 
 function display_list(field, data, partial)
 {
-	var list = $(field).parent().find('ul.results').html('');
+	var list = $('#search .results').html('').removeClass('hidden');
 	results = [];
 	selected = null;
 
-	if (list && partial.length)
+	if (list && partial.length && data.length)
 	{
 		$(data).each(function(i, item) {
 			var elem = $('<li>'+highlight(item[0], partial)+'</li>').click(function() {
@@ -39,6 +39,10 @@ function display_list(field, data, partial)
 			$(list).append(elem);
 			results.push(obj);
 		})
+	}
+	else
+	{
+		$('#search .results').addClass('hidden');
 	}
 }
 
@@ -89,5 +93,5 @@ function select(e)
 }
 
 $(document).ready(function() {
-	$('form.search [name=term]').keyup(autocomplete).keydown(select).after('<ul class="results"></ul>');
+	$('#search input[name=term]').keyup(autocomplete).keydown(select).after('<ul class="results hidden"></ul>');
 });
