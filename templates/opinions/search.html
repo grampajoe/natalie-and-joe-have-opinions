@@ -1,13 +1,9 @@
 {% extends 'opinions/base.html' %}
+{% block body-class %}search{% endblock %}
 {% block content %}
-<h2>Search: "<span class="search_term">{{ term }}</span>"</h2>
+<h3>Search: "<span class="search_term">{{ term }}</span>"</h3>
 {% if things.count %}
-<h3>Things</h3>
-<ul class="things">
-	{% for thing in things %}
-	<li><a href="{{ thing.get_absolute_url }}">{{ thing }}</a></li>
-	{% endfor %}
-</ul>
+	{% include 'opinions/thing_list.html' with things=things %}
 {% else %}
 <p class="error">No results found!</p>
 {% endif %}

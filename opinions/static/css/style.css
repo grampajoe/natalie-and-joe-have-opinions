@@ -1,15 +1,34 @@
+@import url(http://fonts.googleapis.com/css?family=Fredoka+One);
+@import url(http://fonts.googleapis.com/css?family=Asap:400,700,400italic);
+
 * { border:0; padding:0; margin:0; }
 
 body
 {
 	background:#333;
-	font:normal 14px/1.5em Helvetica,Arial,sans-serif;
+	font:normal 16px/1.75em Asap,sans-serif;
 	color:#fff;
 }
 
 ul
 {
 	list-style:none;
+}
+
+h3
+{
+	font:normal 30px/1em "Fredoka One",sans-serif;
+	margin:20px 0 10px;
+}
+
+h3:first-child
+{
+	margin:0 0 10px;
+}
+
+a
+{
+	color:#ddd;
 }
 
 #content:after,
@@ -28,12 +47,16 @@ ul
 {
 	background:#ccc;
 	min-width:800px;
+	padding-bottom:20px;
 }
 
 #header
 {
 	width:780px;
-	margin:10px auto;
+	padding:10px;
+	margin:0 auto 20px;
+	border-radius:0 0 10px 10px;
+	background:#888;
 }
 
 /* Regular Pages */
@@ -53,6 +76,7 @@ ul
 	background:#333;
 	padding-top:80px;
 	overflow:hidden;
+	border-radius:10px;
 }
 
 #search
@@ -78,7 +102,7 @@ ul
 	height:30px;
 	padding:5px;
 	border-radius:5px 0 0 5px;
-	font:normal 20px/26px Arial,Helvetica,sans-serif;
+	font:normal 20px/26px Asap,sans-serif;
 }
 
 #search input[type=submit]
@@ -92,6 +116,7 @@ ul
 	border-radius:0 5px 5px 0;
 	text-indent:40px;
 	background:#fff;
+	cursor:pointer;
 }
 
 #search .results
@@ -103,7 +128,7 @@ ul
 	overflow:hidden;
 	background:#fff;
 	border-radius:0 0 5px 5px;
-	font:normal 20px/1.2em Arial,Helvetica,sans-serif;
+	font:normal 20px/1.2em Asap,sans-serif;
 	color:#333;
 }
 
@@ -131,6 +156,8 @@ ul
 /* Home Page */
 .home #header
 {
+	width:720px;
+	padding:40px;
 }
 
 .home #header h1
@@ -150,7 +177,7 @@ ul
 {
 	width:560px;
 	height:60px;
-	margin:40px auto;
+	margin:40px auto 0;
 	padding:0;
 }
 
@@ -175,11 +202,14 @@ ul
 {
 	top:50px;
 	width:560px;
+	border-radius:0 0 10px 10px;
+	font:normal 24px/32px Arial,Helvetica,sans-serif;
 }
 
 .home #search .results li
 {
 	padding:5px 10px;
+	border-radius:10px;
 }
 
 #content
@@ -187,6 +217,15 @@ ul
 	width:780px;
 	margin:0 auto;
 	padding:10px;
+	background:#888;
+	border-radius:10px;
+}
+
+.home #content
+{
+	width:800px;
+	background:transparent;
+	padding:0;
 }
 
 .split
@@ -196,20 +235,69 @@ ul
 	width:365px;
 	border-radius:10px;
 	padding:10px;
+	margin:0 0 10px 0;
 }
 
-.left
+.split:nth-child(2n),
+.home .split:nth-child(2n+1)
 {
-	margin-right:5px;
+	margin-right:10px;
 }
 
-.right
+.home .split:nth-child(2n)
 {
-	margin-left:5px;
+	margin-right:0;
+}
+
+.split.bare
+{
+	background:#888;
+}
+
+.home .split
+{
+	width:375px;
+}
+
+.error
+{
+	opacity:0.2;
 }
 
 .opinion
 {
+}
+
+.opinion h3
+{
+	font:normal 50px/40px "Fredoka One",sans-serif;
+	margin:0 0 20px 0;
+}
+
+.opinion blockquote
+{
+	position:relative;
+	font-style:italic;
+	font-size:1.5em;
+	margin:30px 10px;
+}
+
+.opinion .review:first-letter
+{
+	display:block;
+	float:left;
+	font:bold 2em/0.6em Asap,sans-serif;
+}
+
+.opinion .review p
+{
+	text-indent:1.5em;
+	margin:0 0 10px 0;
+}
+
+.opinion .review p:first-child
+{
+	text-indent:0;
 }
 
 .opinion.natalie
@@ -220,14 +308,58 @@ ul
 {
 }
 
+.rating
+{
+	position:relative;
+	float:right;
+	margin:0 0 10px 10px;
+	font:normal 50px/40px "Fredoka One",sans-serif;
+}
+
+.rating span
+{
+	display:block;
+	z-index:1;
+	overflow:hidden;
+	color:#444;
+}
+
+.rating span.overlay
+{
+	position:absolute;
+	top:0;
+	right:0;
+	z-index:2;
+	color:#888;
+	background:#333;
+}
+
+.meta
+{
+	margin:10px 0 0;
+	opacity:0.2;
+	font-size:12px;
+	line-height:1em;
+}
+
 h2.thing
 {
-	width:0px;
-	height:200px;
-	padding-left:780px;
+	width:760px;
 	overflow:hidden;
 	background:#aaa;
 	margin:0 0 10px 0;
+	padding:10px;
+	text-align:center;
+	font:normal 80px/1em "Fredoka One",sans-serif;
+	text-shadow:0 0 10px #333;
+	border-radius:10px;
+	color:#fff;
+}
+
+h2.thing.image
+{
+	background-repeat:no-repeat;
+	background-position:top center;
 }
 
 h2.versus a
@@ -238,9 +370,55 @@ h2.versus a
 	background:#333;
 }
 
+ul.things,
+ul.opinions
+{
+	margin-bottom:-10px;
+}
+
+ul.things a,
+ul.opinions a
+{
+	text-decoration:none;
+}
+
+ul.things li,
+ul.opinions li
+{
+	background:#333;
+	padding:10px;
+	margin:0 0 10px;
+	border-radius:10px;
+	font:normal 20px/1em "Fredoka One",sans-serif;
+}
+
+ul.things .rating,
+ul.opinions .rating
+{
+	font:normal 20px/1em "Fredoka One",sans-serif;
+}
+
+.rating.natalie .overlay
+{
+	color:#888;
+}
+
+.rating.joe .overlay
+{
+	color:#888;
+}
+
+ul.reviews
+{
+}
+
 #footer
 {
 	background:#333;
+	width:780px;
 	min-height:80px;
-	margin:10px 0 0;
+	margin:0 auto 10px;
+	padding:10px;
+	color:rgba(255,255,255,0.2);
+	font:normal 12px/1.5em Asap,sans-serif;
 }

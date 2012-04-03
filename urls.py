@@ -5,6 +5,8 @@ from django.views.generic import RedirectView
 from django.contrib import admin
 admin.autodiscover()
 
+from django.conf import settings
+
 urlpatterns = patterns('',
     url(r'^$', 'opinions.views.home', name='home'),
     url(r'^things/', include('opinions.urls')),
@@ -17,3 +19,9 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += staticfiles_urlpatterns()
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
+            {'document_root': settings.MEDIA_ROOT}),
+    )

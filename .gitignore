@@ -3,3 +3,4 @@
 *.db
 env/
 static/
+media/images/things/

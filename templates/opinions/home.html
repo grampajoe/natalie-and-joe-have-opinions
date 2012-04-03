@@ -1,22 +1,28 @@
 {% extends 'opinions/base.html' %}
 {% block body-class %}home{% endblock %}
 {% block content %}
-	<div id="recent" class="split left">
-		<h2>Recent Opinions</h2>
+	<div id="recent" class="split bare">
+		<h3>Recent Opinions</h3>
 		{% if recent_opinions %}
-		<ul>
+		<ul class="opinions">
 			{% for opinion in recent_opinions %}
-			<li><a href="{{ opinion.get_absolute_url }}">{{ opinion }}</a></li>
+			<li>
+				<a href="{{ opinion.get_absolute_url }}" class="rating {{ opinion.user.first_name|lower }}" title="{{ opinion.rating }}">
+					<span class="overlay" style="height:{% widthratio opinion.inverse_rating 5 100 %}%">{{ opinion.user.first_name }}</span>
+					{{ opinion.user.first_name }}
+				</a>
+				<a{% if opinion.summary %} title="&ldquo;{{ opinion.summary }}&rdquo;"{% endif %} href="{{ opinion.get_absolute_url }}">{{ opinion.thing.name }}</a>
+			</li>
 			{% endfor %}
 		</ul>
 		{% else %}
 		<p class="error">No opinions!</p>
 		{% endif %}
 	</div>
-	<div id="random" class="split right">
-		<h2>Random Things</h2>
+	<div id="random" class="split bare">
+		<h3>Random Things</h3>
 		{% if random_things %}
-		<ul>
+		<ul class="things">
 			{% for thing in random_things %}
 			<li><a href="{{ thing.get_absolute_url }}">{{ thing }}</a></li>
 			{% endfor %}

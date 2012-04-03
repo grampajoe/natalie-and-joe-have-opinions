@@ -1,12 +1,8 @@
 {% extends 'opinions/base.html' %}
 {% block content %}
-<h2>Things</h2>
+<h3>Things</h3>
 {% if things %}
-<ul class="things">
-{% for thing in things %}
-	<li><a href="{{ thing.get_absolute_url }}">{{ thing }}</a></li>
-{% endfor %}
-</ul>
+	{% include 'opinions/thing_list.html' with things=things %}
 {% else %}
 <p class="error">No things!</p>
 {% endif %}

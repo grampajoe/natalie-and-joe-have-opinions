@@ -1,12 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
 import random
+import markdown
+
+MAX_RATING = 5
 
 class Thing(models.Model):
     """A Thing we have Opinions about."""
     parent = models.ForeignKey('Thing', blank=True, null=True,
             related_name='children')
     name = models.CharField(max_length=256, db_index=True, unique=True)
+    image = models.ImageField(upload_to="images/things/", blank=True)
     slug = models.SlugField(primary_key=True)
     versus = models.ManyToManyField('Thing', through='Versus',
             symmetrical=False)
@@ -56,6 +60,9 @@ class Review(models.Model):
     summary = models.CharField(max_length=256, blank=True)
     review = models.TextField()
 
+    def html_review(self):
+        return markdown.markdown(self.review)
+
     class Meta(object):
         abstract = True
         ordering = ['-date']
@@ -65,6 +72,9 @@ class Opinion(Review):
     thing = models.ForeignKey('Thing', related_name='opinions')
     rating = models.FloatField()
     
+    def inverse_rating(self):
+        return MAX_RATING - self.rating
+
     def __unicode__(self):
         if len(self.summary):
             return u'{0} on {1}: "{2}"'.format(self.user.first_name,

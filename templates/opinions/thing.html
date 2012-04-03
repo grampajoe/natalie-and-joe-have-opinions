@@ -1,35 +1,44 @@
 {% extends 'opinions/base.html' %}
 {% block content %}
-	<h2 class="thing">{{ thing.name }}</h2>
+<h2 class="thing{% if thing.image %} image{% endif %}"{% if thing.image %} style="min-height:{{ thing.image.height|add:-20 }}px; background-image:url({{ thing.image.url }});"{% endif %}>{{ thing.name }}</h2>
 	{% if thing.description %}<div class="description">{{ thing.description }}</div>{% endif %}
 	{% for opinion in thing.get_opinions %}
 	<div class="opinion split {% cycle 'left' 'right' %} {% cycle 'natalie' 'joe' as first_name %}">
 		{% if opinion %}
-		<div class="rating">{{ opinion.rating }}</div>
-		{% if opinion.summary %}<div class="summary">{{ opinion.summary }}</div>{% endif %}
-		<div class="review">{{ opinion.review }}</div>
+		<div class="rating {{ first_name }}">
+			<span class="overlay" style="height:{% widthratio opinion.inverse_rating 5 100 %}%">{{ opinion.rating }}</span>
+			{{ opinion.rating }}
+		</div>
+		<h3>{{ first_name|capfirst }}</h3>
+		{% if opinion.summary %}<blockquote>{{ opinion.summary }}</blockquote>{% endif %}
+		<div class="review">{{ opinion.html_review|safe }}</div>
 		<div class="meta">
-			<span class="date">{{ opinion.date }}</span> by {{ first_name|capfirst }}
+			<span class="date">{{ opinion.date }}</span>
 		</div>
 		{% else %}
+		<h3>{{ first_name|capfirst }}</h3>
 		<p class="error">{{ first_name|capfirst }} doesn't have an opinion about this yet!</p>
 		{% endif %}
 	</div>
 	{% endfor %}
 	{% if thing.get_versus.count %}
-	<h3>Versus</h3>
-	<ul class="versus">
-		{% for versus in thing.get_versus %}
-		<li><a href="{{ versus.get_absolute_url }}">{{ versus }}</a></li>
-		{% endfor %}
-	</ul>
+	<div class="split bare">
+		<h3>Versus</h3>
+		<ul class="things versus">
+			{% for versus in thing.get_versus %}
+			<li><a href="{{ versus.get_absolute_url }}">{{ versus }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
 	{% endif %}
 	{% if thing.children.count %}
-	<h3>Things in This Category</h3>
-	<ul class="children">
-		{% for child in thing.children.all %}
-		<li><a href="{{ child.get_absolute_url }}">{{ child }}</a></li>
-		{% endfor %}
-	</ul>
+	<div class="split bare">
+		<h3>Things in This Category</h3>
+		<ul class="things">
+			{% for child in thing.children.all %}
+			<li><a href="{{ child.get_absolute_url }}">{{ child }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
 	{% endif %}
 {% endblock %}

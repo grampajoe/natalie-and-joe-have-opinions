@@ -1,16 +1,46 @@
 var results = [];
 var selected = null;
 
+var history = {};
+var lastPartial = '';
+var searchTimeout = null;
+var searchDelay = 300;
+
 function autocomplete(e)
 {
-	if (e.which == 38 || e.which == 40) return true;
+	// esc
+	if (e.which == 27)
+	{
+		this.value = lastPartial;
+		display_list(this, [], '');
+		return true;
+	}
+
+	// up or down
+	if ((e.which == 38 || e.which == 40) && selected) return true;
 
 	var field = this;
-	var partial = field.value;
+	var partial = lastPartial = field.value;
 
-	$.getJSON('/autocomplete/'+partial, null, function(data) {
-		display_list(field, data, partial);
-	});
+	clearTimeout(searchTimeout);
+
+	if (partial in history)
+	{
+		display_list(field, history[partial], partial);
+	}
+	else if (partial.length)
+	{
+		searchTimeout = setTimeout(function() {
+			$.getJSON('/autocomplete/'+partial, null, function(data) {
+				history[partial] = data;
+				display_list(field, data, partial);
+			});
+		}, searchDelay);
+	}
+	else
+	{
+		display_list(field, [], partial);
+	}
 
 	return true;
 }

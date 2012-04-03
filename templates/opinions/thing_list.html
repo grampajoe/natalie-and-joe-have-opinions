@@ -1,0 +1,19 @@
+<ul class="things">
+	{% for thing in things %}
+	<li>
+		{% with opinions=thing.get_opinions %}
+			{% for opinion in opinions reversed %}
+			<a class="rating {% cycle 'joe' 'natalie' as name %}" href="{{ thing.get_absolute_url }}" {% if opinion %} title="{{ opinion.rating }}"{% endif %}>
+				{% if opinion %}
+				<span class="overlay" style="height:{% widthratio opinion.inverse_rating 5 100 %}%">{{ opinion.user.first_name }}</span>
+				{{ name|capfirst }}
+				{% else %}
+				<span>{{ name|capfirst }}</span>
+				{% endif %}
+			</a>
+			{% endfor %}
+		{% endwith %}
+		<a class="thing" href="{{ thing.get_absolute_url }}">{{ thing }}</a>
+	</li>
+	{% endfor %}
+</ul>
