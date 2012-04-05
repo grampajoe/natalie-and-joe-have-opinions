@@ -29,12 +29,14 @@ h3:first-child
 a
 {
 	color:#ddd;
+	text-decoration:none;
 }
 
 #content:after,
 #recent:after,
 #random:after,
-.opinion:after
+.opinion:after,
+.parents:after
 {
 	content:' ';
 	display:block;
@@ -121,7 +123,7 @@ a
 
 #search .results
 {
-	z-index:1;
+	z-index:10;
 	position:absolute;
 	top:55px;
 	width:350px;
@@ -238,15 +240,9 @@ a
 	margin:0 0 10px 0;
 }
 
-.split:nth-child(2n),
-.home .split:nth-child(2n+1)
+.split.left
 {
 	margin-right:10px;
-}
-
-.home .split:nth-child(2n)
-{
-	margin-right:0;
 }
 
 .split.bare
@@ -339,6 +335,24 @@ a
 	margin:10px 0 0;
 	opacity:0.2;
 	font-size:12px;
+	line-height:1em;
+}
+
+.parents
+{
+	width:760px;
+	margin-bottom:10px;
+}
+
+.parents li
+{
+	display:block;
+	float:left;
+	margin:0 5px 0 0;
+	border-radius:10px 15px 15px 10px;
+	padding:5px 10px;
+	background:#555;
+	color:#fff;
 	line-height:1em;
 }
 

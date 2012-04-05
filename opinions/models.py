@@ -11,7 +11,7 @@ class Thing(models.Model):
             related_name='children')
     name = models.CharField(max_length=256, db_index=True, unique=True)
     image = models.ImageField(upload_to="images/things/", blank=True)
-    slug = models.SlugField(primary_key=True)
+    slug = models.SlugField(db_index=True)
     versus = models.ManyToManyField('Thing', through='Versus',
             symmetrical=False)
 
@@ -29,6 +29,14 @@ class Thing(models.Model):
         return Versus.objects.filter(models.Q(thing_one=self) |
                 models.Q(thing_two=self))[:count]
 
+    def get_parents(self):
+        p = self.parent
+        ps = []
+        if p is not None:
+            ps.append(p)
+            ps.extend(p.get_parents())
+        return ps
+
     @staticmethod
     def get_random():
         n = 10
@@ -39,7 +47,9 @@ class Thing(models.Model):
             while len(things) < n:
                 ids = random.sample(xrange(1, max_id+1), n)
                 things.update(Thing.objects.filter(id__in=ids))
-            return list(things)
+            things = list(things)
+            random.shuffle(things)
+            return things
         else:
             return Thing.objects.order_by('?')
 

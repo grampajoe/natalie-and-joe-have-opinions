@@ -1,5 +1,14 @@
 {% extends 'opinions/base.html' %}
 {% block content %}
+{% with parents=thing.get_parents %}
+{% if parents %}
+<ul class="parents">
+	{% for parent in parents reversed %}
+	<li><a href="{{ parent.get_absolute_url }}">{{ parent }}</a></li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
 <h2 class="thing{% if thing.image %} image{% endif %}"{% if thing.image %} style="min-height:{{ thing.image.height|add:-20 }}px; background-image:url({{ thing.image.url }});"{% endif %}>{{ thing.name }}</h2>
 	{% if thing.description %}<div class="description">{{ thing.description }}</div>{% endif %}
 	{% for opinion in thing.get_opinions %}
@@ -22,7 +31,7 @@
 	</div>
 	{% endfor %}
 	{% if thing.get_versus.count %}
-	<div class="split bare">
+	<div class="split bare left">
 		<h3>Versus</h3>
 		<ul class="things versus">
 			{% for versus in thing.get_versus %}
