@@ -7,6 +7,7 @@ class OpinionInline(admin.StackedInline):
 
 class ThingAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
+    readonly_fields = ('rating', 'unity')
     inlines = [
         OpinionInline,
             ]

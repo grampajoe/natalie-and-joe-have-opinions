@@ -14,6 +14,8 @@ class Thing(models.Model):
     slug = models.SlugField(db_index=True)
     versus = models.ManyToManyField('Thing', through='Versus',
             symmetrical=False)
+    rating = models.FloatField(blank=True, null=True, db_index=True)
+    unity = models.FloatField(blank=True, null=True, db_index=True)
 
     def get_opinions(self):
         opinions = []
@@ -23,6 +25,23 @@ class Thing(models.Model):
             except Opinion.DoesNotExist:
                 opinions.append(False)
         return opinions
+
+    def update_ratings(self):
+        opinions = self.opinions.all()
+
+        # Rating is the average of all ratings
+        rating = reduce(lambda a, b: a + b.rating, opinions, 0)
+        rating /= len(opinions) or 1
+        self.rating = rating
+        
+        # Unity is the maximum rating minus the absolute difference between ratings
+        if len(opinions) > 1:
+            self.unity = MAX_RATING - reduce(lambda a, b: abs(a.rating -
+                    b.rating), opinions)
+        else:
+            # Unity is undefined if one hasn't rated
+            self.unity = None
+        self.save()
 
     def get_versus(self, count=None):
         """Get all Versus objects related to this one."""
@@ -94,6 +113,15 @@ class Opinion(Review):
 
     def get_absolute_url(self):
         return self.thing.get_absolute_url()
+
+    def save(self, *args, **kwargs):
+        super(Opinion, self).save(*args, **kwargs)
+        self.thing.update_ratings()
+
+    def delete(self, *args, **kwargs):
+        thing = self.thing
+        super(Opinion, self).delete(*args, **kwargs)
+        thing.update_ratings()
 
     class Meta(object):
         ordering = ['-date']

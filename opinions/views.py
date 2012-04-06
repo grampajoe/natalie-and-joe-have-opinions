@@ -16,10 +16,18 @@ def home(request):
         context_instance=RequestContext(request))
 
 def index(request):
-    """Show top-level things."""
-    things = Thing.objects.filter(parent=None)
-    return render_to_response('opinions/index.html', {'things': things},
-            context_instance=RequestContext(request))
+    """Show all the things."""
+    things = Thing.objects.all()
+    sort = request.GET.get('sort', 'name')
+    if sort == 'rating':
+        things = things.order_by('-rating')
+    elif sort == 'unity':
+        things = things.order_by('-unity')
+    else:
+        sort = 'name'
+
+    return render_to_response('opinions/index.html', {'things': things, 'sort':
+            sort}, context_instance=RequestContext(request))
 
 def thing(request, thing_slug):
     """View a thing and the things they encompass."""
