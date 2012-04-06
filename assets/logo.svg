@@ -22,13 +22,13 @@
      id="defs4" />
   <sodipodi:namedview
      id="base"
-     pagecolor="#ffffff"
+     pagecolor="#333333"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="203.73985"
+     inkscape:cx="403.73985"
      inkscape:cy="144.75817"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
@@ -62,17 +62,7 @@
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="Background">
-    <rect
-       style="fill:#333333;fill-opacity:1;stroke:none"
-       id="rect2985"
-       width="780"
-       height="160"
-       x="0"
-       y="2.6171874e-06"
-       rx="10"
-       ry="10" />
-  </g>
+     inkscape:label="Background" />
   <g
      inkscape:groupmode="layer"
      id="layer3"
@@ -95,8 +85,8 @@
        x="238.20906"
        y="1059.9617"
        transform="matrix(0.9961947,-0.08715574,0.08715574,0.9961947,0,0)"><tspan
-   id="tspan3041"
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;font-family:Mr Dafoe;-inkscape-font-specification:Mr Dafoe">About Literally Everything</tspan></text>
+         id="tspan3041"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;font-family:Mr Dafoe;-inkscape-font-specification:Mr Dafoe">About Literally Everything</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:77.55355072px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Fredoka One;-inkscape-font-specification:Fredoka One"

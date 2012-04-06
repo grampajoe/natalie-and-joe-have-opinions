@@ -6,6 +6,12 @@ var lastPartial = '';
 var searchTimeout = null;
 var searchDelay = 300;
 
+function hide()
+{
+	display_list(this, [], '');
+	return true;
+}
+
 function autocomplete(e)
 {
 	// esc
@@ -123,5 +129,5 @@ function select(e)
 }
 
 $(document).ready(function() {
-	$('#search input[name=term]').keyup(autocomplete).keydown(select).after('<ul class="results hidden"></ul>');
+	$('#search input[name=term]').keyup(autocomplete).keydown(select).blur(hide).parent().append('<ul class="results hidden"></ul>');
 });

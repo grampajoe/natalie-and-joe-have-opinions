@@ -5,7 +5,7 @@
 
 body
 {
-	background:#333;
+	background:#ccc;
 	font:normal 16px/1.75em Asap,sans-serif;
 	color:#fff;
 }
@@ -64,7 +64,7 @@ a:hover
 	padding:10px;
 	margin:0 auto 20px;
 	border-radius:0 0 10px 10px;
-	background:#888;
+	background:#333;
 }
 
 /* Regular Pages */
@@ -84,7 +84,6 @@ a:hover
 	background:transparent url('../images/logo_small.png') center top no-repeat;
 	padding-top:80px;
 	overflow:hidden;
-	border-radius:10px;
 }
 
 #search
@@ -123,8 +122,16 @@ a:hover
 	overflow:hidden;
 	border-radius:0 5px 5px 0;
 	text-indent:40px;
-	background:#fff;
+	background:#ddd url('../images/search_small.png') center 50% no-repeat;
 	cursor:pointer;
+	-webkit-transition:background-color 0.2s;
+}
+
+#search input[type=submit]:hover,
+#search input[type=text]:focus + input[type=submit]
+{
+	background-color:#333;
+
 }
 
 #search .results
@@ -169,11 +176,12 @@ a:hover
 	border-radius:10px;
 	padding:0 10px;
 	line-height:20px;
+	color:#fff;
 }
 
 #search .browse:hover
 {
-	background:#333;
+	background:#555;
 }
 
 /* Home Page */
@@ -220,6 +228,7 @@ a:hover
 	height:60px;
 	text-indent:60px;
 	border-radius:0 10px 10px 0;
+	background-image:url('../images/search.png');
 }
 
 .home #search .results
@@ -457,11 +466,10 @@ ul.reviews
 
 #footer
 {
-	background:#333;
 	width:780px;
-	min-height:80px;
+	min-height:20px;
 	margin:0 auto 10px;
 	padding:10px;
-	color:rgba(255,255,255,0.2);
+	color:#888;
 	font:normal 12px/1.5em Asap,sans-serif;
 }
