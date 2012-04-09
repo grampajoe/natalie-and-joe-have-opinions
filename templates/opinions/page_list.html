@@ -1,0 +1,19 @@
+{% if page.has_other_pages %}
+<ul class="pages clearfix">
+	<li class="previous">
+	{% if page.has_previous %}
+		<a href="?sort={{ sort }}&page={{ page.previous_page_number }}">Prev</a>
+	{% else %}
+		<span>Prev</span>
+	{% endif %}
+	</li>
+	<li><a>{{ page.number }} of {{ page.paginator.num_pages }}</a></li>
+	<li class="next">
+	{% if page.has_next %}
+		<a href="?sort={{ sort }}&page={{ page.next_page_number }}">Next</a>
+	{% else %}
+		<span>Next</span>
+	{% endif %}
+	</li>
+</ul>
+{% endif %}

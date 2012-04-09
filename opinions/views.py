@@ -5,6 +5,8 @@ from django.http import HttpResponse, Http404
 from models import Thing, Opinion, Versus, VersusOpinion
 from django.db.models import Q
 from django.core import serializers
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.conf import settings
 import json
 
 def home(request):
@@ -23,8 +25,18 @@ def index(request):
         things = things.order_by('-rating')
     elif sort == 'unity':
         things = things.order_by('-unity')
+    elif sort == 'date':
+        things = things.order_by('-opinions__date').distinct()
     else:
         sort = 'name'
+
+    paginator = Paginator(things, settings.THINGS_PER_PAGE)
+
+    page = request.GET.get('page', 1)
+    try:
+        things = paginator.page(page)
+    except (PageNotAnInteger, EmptyPage):
+        things = paginator.page(1)
 
     return render_to_response('opinions/index.html', {'things': things, 'sort':
             sort}, context_instance=RequestContext(request))
@@ -54,6 +66,13 @@ def search(request, term=None):
         return redirect('home')
     """Oh boy."""
     things = Thing.objects.filter(name__icontains=term)
+
+    paginator = Paginator(things, settings.THINGS_PER_PAGE)
+    page = request.GET.get('page', 1)
+    try:
+        things = paginator.page(page)
+    except InvalidPage:
+        things = paginator.page(1)
 
     return render_to_response('opinions/search.html', {'term': term, 'things':
         things}, context_instance=RequestContext(request))

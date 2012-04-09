@@ -142,3 +142,6 @@ LOGGING = {
         },
     }
 }
+
+# App Specific Settings
+THINGS_PER_PAGE = 1

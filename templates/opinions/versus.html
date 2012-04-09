@@ -1,19 +1,30 @@
 {% extends 'opinions/base.html' %}
 {% block content %}
-<h2 class="versus thing"><a class="one" href="{{ versus.thing_one.get_absolute_url }}">{{ versus.thing_one }}</a> vs. <a class="two" href="{{ versus.thing_two.get_absolute_url }}">{{ versus.thing_two }}</a></h2>
+<h2 class="versus thing">
+	<div class="one">
+		<a href="{{ versus.thing_one.get_absolute_url }}"><span>{{ versus.thing_one }}</span></a>
+	</div>
+	<span>VS</span>
+	<div class="two">
+		<a href="{{ versus.thing_two.get_absolute_url }}"><span>{{ versus.thing_two }}</span></a>
+	</div>
+</h2>
 {% for opinion in versus.get_opinions %}
 <div class="versus opinion split {% cycle 'left' 'right' %} {% cycle 'natalie' 'joe' as first_name %}">
+	<h3>{{ first_name|capfirst }}</h3>
 	{% if opinion %}
+		{% if opinion.summary %}<div class="summary">{{ opinion.summary }}</div>{% endif %}
+	<div class="review">{{ opinion.review }}</div>
+		{% if opinion.winner %}
+		<div class="winner">
+			<a href="{% url thing opinion.winner.slug %}">{{ opinion.winner }}</a>
+		</div>
+		{% else %}
+		<div class="winner draw">Draw!</div>
+		{% endif %}
 	<div class="meta">
 		<span class="date">{{ opinion.date }}</span> by {{ first_name|capfirst }}
 	</div>
-	{% if opinion.summary %}<div class="summary">{{ opinion.summary }}</div>{% endif %}
-	<div class="review">{{ opinion.review }}</div>
-	{% if opinion.winner %}
-	<div class="winner"><a href="{% url thing opinion.winner.slug %}">{{ opinion.winner }}</a></div>
-	{% else %}
-	<div class="draw">Draw!</div>
-	{% endif %}
 	{% else %}
 	<p class="error">{{ first_name|capfirst }} hasn't compared these things yet!</p>
 	{% endif %}

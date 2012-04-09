@@ -2,8 +2,9 @@
 {% block body-class %}search{% endblock %}
 {% block content %}
 <h3>Search: "<span class="search_term">{{ term }}</span>"</h3>
-{% if things.count %}
-	{% include 'opinions/thing_list.html' with things=things %}
+{% if things.paginator.count %}
+	{% include 'opinions/thing_list.html' with things=things.object_list %}
+	{% include 'opinions/page_list.html' with page=things %}
 {% else %}
 <p class="error">No results found!</p>
 {% endif %}
