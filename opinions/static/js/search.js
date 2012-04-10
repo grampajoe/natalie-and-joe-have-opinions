@@ -5,10 +5,12 @@ var history = {};
 var lastPartial = '';
 var searchTimeout = null;
 var searchDelay = 300;
+var input = null;
 
-function hide()
+function hide(e)
 {
-	display_list(this, [], '');
+	if (e.target != input)
+		display_list(input, [], '');
 	return true;
 }
 
@@ -129,5 +131,7 @@ function select(e)
 }
 
 $(document).ready(function() {
-	$('#search input[name=term]').keyup(autocomplete).keydown(select).blur(hide).parent().append('<ul class="results hidden"></ul>');
+	input = $('#search input[name=term]')[0];
+	$(input).keyup(autocomplete).keydown(select).parent().append('<ul class="results hidden"></ul>');
+	$(window).click(hide);
 });
