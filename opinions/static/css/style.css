@@ -5,7 +5,7 @@
 
 body
 {
-	background:#ccc;
+	background:#dbbdda;
 	font:normal 16px/1.75em Asap,sans-serif;
 	color:#fdf7fd;
 }
@@ -29,21 +29,16 @@ h3:first-child,
 
 a
 {
-	color:#ddd;
+	color:#e3ff73;
 	text-decoration:none;
 	-webkit-transition:0.2s;
 }
 
 a:hover
 {
-	color:#fff;
+	color:#fdf7fd;
 }
 
-#content:after,
-#recent:after,
-#random:after,
-.opinion:after,
-.parents:after,
 .clearfix:after
 {
 	content:' ';
@@ -55,7 +50,7 @@ a:hover
 
 #wrapper
 {
-	background:#ccc;
+	background:#dbbdda;
 	min-width:800px;
 	padding-bottom:20px;
 }
@@ -133,7 +128,7 @@ a:hover
 #search input[type=submit]:hover,
 #search input[type=text]:focus + input[type=submit]
 {
-	background-color:#333;
+	background-color:#521450;
 
 }
 
@@ -168,7 +163,7 @@ a:hover
 
 #search .results .selected
 {
-	background:#eee;
+	background:#ffddfb;
 }
 
 #search .browse
@@ -184,7 +179,7 @@ a:hover
 
 #search .browse:hover
 {
-	background:#555;
+	background:#6d3b6c;
 }
 
 /* Home Page */
@@ -206,7 +201,7 @@ a:hover
 {
 	padding-top:160px;
 	background-image:url('../images/logo_flicker.png');
-	background-position:top;
+	background-position:middle center;
 	-webkit-transition:none;
 	-webkit-animation-name:logo-flicker;
 	-webkit-animation-duration:15s;
@@ -216,25 +211,12 @@ a:hover
 
 @-webkit-keyframes logo-flicker
 {
-	0%
-	{
-		background-position:top;
-	}
-
-	95%
-	{
-		background-position:bottom;
-	}
-
-	96%
-	{
-		background-position:top;
-	}
-
-	97%
-	{
-		background-position:bottom;
-	}
+	0%  { background-position:top; }
+	35% { background-position:bottom; }
+	36% { background-position:top; }
+	95% { background-position:bottom; }
+	96% { background-position:top; }
+	97% { background-position:bottom; }
 }
 
 .home #search
@@ -277,16 +259,17 @@ a:hover
 	border-radius:10px;
 }
 
-#content
+.content
 {
 	width:780px;
-	margin:0 auto;
+	margin:0 auto 20px;
 	padding:10px;
-	background:#888;
+	background:#9f6f9e;
 	border-radius:10px;
 }
 
-.home #content
+.home .content,
+.content.bare
 {
 	width:800px;
 	background:transparent;
@@ -295,12 +278,11 @@ a:hover
 
 .split
 {
-	background:#333;
+	background:#521450;
 	float:left;
 	width:365px;
 	border-radius:10px;
 	padding:10px;
-	margin:0 0 10px 0;
 }
 
 .split.left
@@ -308,14 +290,21 @@ a:hover
 	margin-right:10px;
 }
 
-.split.bare
+.split.right
 {
-	background:#888;
+	margin-left:395px;
+	float:none;
 }
 
-.home .split
+.split.bare
 {
+	background:#9f6f9e;
 	width:375px;
+}
+
+.split.bare.right
+{
+	margin-left:405px;
 }
 
 .error
@@ -323,14 +312,26 @@ a:hover
 	opacity:0.2;
 }
 
-.opinion
-{
-}
-
 .opinion h3
 {
 	font:normal 50px/40px "Fredoka One",sans-serif;
 	margin:0 0 20px 0;
+}
+
+.opinion.joe h3,
+.rating.joe,
+ul.things li:hover a.rating.joe,
+ul.opinions li:hover a.rating.joe
+{
+	color:#5297ff;
+}
+
+.opinion.natalie h3,
+.rating.natalie,
+ul.things li:hover a.rating.natalie,
+ul.opinions li:hover a.rating.natalie
+{
+	color:#61ff52;
 }
 
 .opinion blockquote
@@ -359,14 +360,6 @@ a:hover
 	text-indent:0;
 }
 
-.opinion.natalie
-{
-}
-
-.opinion.joe
-{
-}
-
 .rating
 {
 	position:relative;
@@ -380,7 +373,7 @@ a:hover
 	display:block;
 	z-index:1;
 	overflow:hidden;
-	color:#444;
+	color:#9f6f9e;
 }
 
 .rating span.overlay
@@ -389,28 +382,8 @@ a:hover
 	top:0;
 	right:0;
 	z-index:2;
-	color:#888;
-	background:#333;
-}
-
-.rating.natalie
-{
-	color:#ddd;
-}
-
-.rating.joe
-{
-	color:#ddd;
-}
-
-.rating.natalie .overlay
-{
-	color:#888;
-}
-
-.rating.joe .overlay
-{
-	color:#888;
+	color:#9f6f9e;
+	background:#521450;
 }
 
 .meta
@@ -438,7 +411,8 @@ a:hover
 	margin:0 5px 0 0;
 	border-radius:10px 15px 15px 10px;
 	padding:5px 10px;
-	background:#555;
+	background:#521450;
+	color:#fdf7fd;
 	line-height:1em;
 }
 
@@ -447,7 +421,7 @@ h2.thing,
 {
 	width:760px;
 	overflow:hidden;
-	background:#aaa;
+	background:#c492c2;
 	margin:0 0 10px 0;
 	padding:10px;
 	text-align:center;
@@ -476,7 +450,7 @@ h2.versus > span
 	height:1em;
 	margin:-0.5em 0 0 -1em;
 	font:normal 40px/1em "Fredoka One",sans-serif;
-	color:#333;
+	color:#521450;
 	text-shadow:none;
 }
 
@@ -516,7 +490,7 @@ h2.versus a
 	display:block;
 	content:'Winner:';
 	text-shadow:none;
-	color:#333;
+	color:#521450;
 	margin:0 0 10px;
 	font:normal 20px/1em "Fredoka One",sans-serif;
 }
@@ -544,15 +518,15 @@ ul.opinions a
 	display:block;
 	text-decoration:none;
 	padding:10px;
+	color:#e4cde4;
 }
 
 ul.things li,
 ul.opinions li
 {
-	background:#333;
+	background:#521450;
 	margin:0 0 10px;
 	border-radius:10px;
-	border:2px solid #333;
 	font:normal 20px/1em "Fredoka One",sans-serif;
 	-webkit-transition:0.2s;
 }
@@ -571,9 +545,8 @@ ul.opinions .rating
 	margin:10px;
 }
 
-ul.sort
 {
-
+	color:inherit;
 }
 
 ul.sort li
@@ -585,7 +558,7 @@ ul.sort li
 ul.sort li.active a,
 ul.sort li:hover a
 {
-	background:#333;
+	background:#521450;
 }
 
 ul.sort li a
@@ -595,6 +568,7 @@ ul.sort li a
 	border-radius:10px;
 	margin:0 0 0 10px;
 	line-height:30px;
+	color:#fdf7fd;
 }
 
 ul.pages
@@ -641,8 +615,8 @@ ul.pages li.next
 {
 	width:780px;
 	min-height:20px;
-	margin:0 auto 10px;
+	margin:-20px auto 10px;
 	padding:10px;
-	color:#888;
+	color:#9f6f9e;
 	font:normal 12px/1.5em Asap,sans-serif;
 }

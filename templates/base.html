@@ -9,10 +9,12 @@
 <body class="{% block body-class %}{% endblock %}">
 	<div id="wrapper">
 		{% include 'header.html' %}
-		<div id="content">
+		<div class="content clearfix">
 			{% block content %}
 			{% endblock %}
 		</div>
+		{% block post-content %}
+		{% endblock %}
 	</div>
 	{% include 'footer.html' %}
 </body>

@@ -105,11 +105,7 @@ class Opinion(Review):
         return MAX_RATING - self.rating
 
     def __unicode__(self):
-        if len(self.summary):
-            return u'{0} on {1}: "{2}"'.format(self.user.first_name,
-                    self.thing.name, self.summary)
-        else:
-            return u'{0} on {1}'.format(self.user.first_name, self.thing.name)
+        return unicode(self.thing)
 
     def get_absolute_url(self):
         return self.thing.get_absolute_url()
@@ -152,7 +148,8 @@ class Versus(models.Model):
         return opinions
 
     def __unicode__(self):
-        return '{0} vs. {1}'.format(*self.get_things())
+        return u'{0} vs {1}'.format(unicode(self.thing_one),
+                unicode(self.thing_two))
 
     @models.permalink
     def get_absolute_url(self):
@@ -174,6 +171,12 @@ class VersusOpinion(Review):
     versus = models.ForeignKey('Versus', related_name='opinions')
     winner = models.ForeignKey('Thing', related_name='versus_wins', blank=True,
             null=True)
+
+    def __unicode__(self):
+        return unicode(self.versus)
+
+    def get_absolute_url(self):
+        return self.versus.get_absolute_url()
 
     class Meta(object):
         unique_together = ('user', 'versus')

@@ -12,9 +12,12 @@ import json
 def home(request):
     """Home view with a little introduction and maybe some aggregate data."""
     recent_opinions = Opinion.objects.all()[:10]
+    recent_versus = VersusOpinion.objects.all()[:10]
+    recent = sorted(list(recent_opinions) + list(recent_versus),
+            key=lambda r: r.date)[:10]
     random_things = Thing.get_random()
     return render_to_response('opinions/home.html', {'recent_opinions':
-        recent_opinions, 'random_things': random_things},
+        recent, 'random_things': random_things},
         context_instance=RequestContext(request))
 
 def index(request):

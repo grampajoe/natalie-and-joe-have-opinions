@@ -7,11 +7,17 @@
 		<ul class="opinions">
 			{% for opinion in recent_opinions %}
 			<li>
+				{% if opinion.rating %}
 				<a href="{{ opinion.get_absolute_url }}" class="rating {{ opinion.user.first_name|lower }}" title="{{ opinion.rating }}">
 					<span class="overlay" style="height:{% widthratio opinion.inverse_rating 5 100 %}%">{{ opinion.user.first_name }}</span>
 					{{ opinion.user.first_name }}
 				</a>
-				<a{% if opinion.summary %} title="&ldquo;{{ opinion.summary }}&rdquo;"{% endif %} href="{{ opinion.get_absolute_url }}">{{ opinion.thing.name }}</a>
+				{% else %}
+				<a href="{{ opinion.get_absolute_url }}" class="rating {{ opinion.user.first_name|lower }} versus">
+					{{ opinion.user.first_name }}
+				</a>
+				{% endif %}
+				<a{% if opinion.summary %} title="&ldquo;{{ opinion.summary }}&rdquo;"{% endif %} href="{{ opinion.get_absolute_url }}">{{ opinion }}</a>
 			</li>
 			{% endfor %}
 		</ul>

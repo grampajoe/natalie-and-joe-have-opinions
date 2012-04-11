@@ -2,7 +2,7 @@
 {% block content %}
 {% with parents=thing.get_parents %}
 {% if parents %}
-<ul class="parents">
+<ul class="parents clearfix">
 	{% for parent in parents reversed %}
 	<li><a href="{{ parent.get_absolute_url }}">{{ parent }}</a></li>
 	{% endfor %}
@@ -25,22 +25,18 @@
 			<span class="date">{{ opinion.date }}</span>
 		</div>
 		{% else %}
+		<div class="rating {{ first_name }}"><span>?</span></div>
 		<h3>{{ first_name|capfirst }}</h3>
 		<p class="error">{{ first_name|capfirst }} doesn't have an opinion about this yet!</p>
 		{% endif %}
 	</div>
 	{% endfor %}
-	{% if thing.get_versus.count %}
-	<div class="split bare left">
-		<h3>Versus</h3>
-		<ul class="things versus">
-			{% for versus in thing.get_versus %}
-			<li><a href="{{ versus.get_absolute_url }}">{{ versus }}</a></li>
-			{% endfor %}
-		</ul>
-	</div>
-	{% endif %}
-	{% if thing.children.count %}
+{% endblock %}
+{% block post-content %}
+{% with versus=thing.get_versus %}
+{% if thing.children.count or versus.count %}
+<div class="content bare">
+{% if thing.children.count %}
 	<div class="split bare">
 		<h3>Things in This Category</h3>
 		<ul class="things">
@@ -50,4 +46,17 @@
 		</ul>
 	</div>
 	{% endif %}
+	{% if versus.count %}
+	<div class="split bare right">
+		<h3>Versus</h3>
+		<ul class="things versus">
+			{% for v in versus %}
+			<li><a href="{{ v.get_absolute_url }}">{{ v }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
+</div>
+{% endif %}
+{% endwith %}
 {% endblock %}
