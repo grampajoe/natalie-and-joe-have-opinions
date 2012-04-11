@@ -5,7 +5,7 @@
 
 body
 {
-	background:#dbbdda;
+	background:#dbbdda url('../images/background.png') 50% 50%;
 	font:normal 16px/1.75em Asap,sans-serif;
 	color:#fdf7fd;
 }
@@ -32,6 +32,9 @@ a
 	color:#e3ff73;
 	text-decoration:none;
 	-webkit-transition:0.2s;
+	-moz-transition:0.2s;
+	-o-transition:0.2s;
+	transition:0.2s;
 }
 
 a:hover
@@ -50,7 +53,6 @@ a:hover
 
 #wrapper
 {
-	background:#dbbdda;
 	min-width:800px;
 	padding-bottom:20px;
 }
@@ -123,6 +125,9 @@ a:hover
 	background:#ddd url('../images/search_small.png') center 50% no-repeat;
 	cursor:pointer;
 	-webkit-transition:background-color 0.2s;
+	-moz-transition:background-color 0.2s;
+	-o-transition:background-color 0.2s;
+	transition:background-color 0.2s;
 }
 
 #search input[type=submit]:hover,
@@ -203,13 +208,58 @@ a:hover
 	background-image:url('../images/logo_flicker.png');
 	background-position:middle center;
 	-webkit-transition:none;
-	-webkit-animation-name:logo-flicker;
+	-moz-transition:background-color 0.2s;
+	-o-transition:background-color 0.2s;
+	transition:background-color 0.2s;
+	-webkit-animation-name:logoFlicker;
 	-webkit-animation-duration:15s;
 	-webkit-animation-iteration-count:infinite;
 	-webkit-animation-timing-function:step-end;
+	-moz-animation-name:logoFlicker;
+	-moz-animation-duration:15s;
+	-moz-animation-iteration-count:infinite;
+	-moz-animation-timing-function:step-end;
+	-o-animation-name:logoFlicker;
+	-o-animation-duration:15s;
+	-o-animation-iteration-count:infinite;
+	-o-animation-timing-function:step-end;
+	animation-name:logoFlicker;
+	animation-duration:15s;
+	animation-iteration-count:infinite;
+	animation-timing-function:step-end;
 }
 
-@-webkit-keyframes logo-flicker
+@-webkit-keyframes logoFlicker
+{
+	0%  { background-position:top; }
+	35% { background-position:bottom; }
+	36% { background-position:top; }
+	95% { background-position:bottom; }
+	96% { background-position:top; }
+	97% { background-position:bottom; }
+}
+
+@-moz-keyframes logoFlicker
+{
+	0%  { background-position:top; }
+	35% { background-position:bottom; }
+	36% { background-position:top; }
+	95% { background-position:bottom; }
+	96% { background-position:top; }
+	97% { background-position:bottom; }
+}
+
+@-o-keyframes logoFlicker
+{
+	0%  { background-position:top; }
+	35% { background-position:bottom; }
+	36% { background-position:top; }
+	95% { background-position:bottom; }
+	96% { background-position:top; }
+	97% { background-position:bottom; }
+}
+
+@keyframes logoFlicker
 {
 	0%  { background-position:top; }
 	35% { background-position:bottom; }
@@ -529,6 +579,9 @@ ul.opinions li
 	border-radius:10px;
 	font:normal 20px/1em "Fredoka One",sans-serif;
 	-webkit-transition:0.2s;
+	-moz-transition:0.2s;
+	-o-transition:0.2s;
+	transition:0.2s;
 }
 
 ul.things li:hover a,

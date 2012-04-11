@@ -13,7 +13,7 @@
 <div class="versus opinion split {% cycle 'left' 'right' %} {% cycle 'natalie' 'joe' as first_name %}">
 	<h3>{{ first_name|capfirst }}</h3>
 	{% if opinion %}
-		{% if opinion.summary %}<div class="summary">{{ opinion.summary }}</div>{% endif %}
+		{% if opinion.summary %}<blockquote>{{ opinion.summary }}</blockquote>{% endif %}
 	<div class="review">{{ opinion.review }}</div>
 		{% if opinion.winner %}
 		<div class="winner">
