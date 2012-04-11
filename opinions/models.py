@@ -156,8 +156,16 @@ class Versus(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        # Randomly order slugs so the URL doesn't give it away.
+        """URLs are alphabetical, too."""
         return ('versus', map(lambda thing: thing.slug, self.get_things()))
+
+    def save(self, *args, **kwargs):
+        """Save in alphabetical order."""
+        if self.thing_one.name > self.thing_two.name:
+            temp = self.thing_one
+            self.thing_one = self.thing_two
+            self.thing_two = temp
+        super(Versus, self).save(*args, **kwargs)
 
     class Meta(object):
         unique_together = ('thing_one', 'thing_two')
