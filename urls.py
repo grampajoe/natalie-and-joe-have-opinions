@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     
     url(r'autocomplete/(.*)$', 'opinions.views.autocomplete', name='autocomplete'),
 
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^tightpagecya/', include(admin.site.urls)),
 )
 
 urlpatterns += staticfiles_urlpatterns()
