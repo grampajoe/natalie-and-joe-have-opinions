@@ -22,7 +22,7 @@
 		{% if opinion.summary %}<blockquote>{{ opinion.summary }}</blockquote>{% endif %}
 		<div class="review">{{ opinion.html_review|safe }}</div>
 		<div class="meta">
-			<span class="date">{{ opinion.date }}</span>
+			<span class="date">{{ opinion.date|date }}</span>
 		</div>
 		{% else %}
 		<div class="rating {{ first_name }}"><span>?</span></div>

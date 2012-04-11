@@ -85,7 +85,7 @@ class Thing(models.Model):
 class Review(models.Model):
     """Abstract class for objects containing reviews, Opinions and Versuses."""
     user = models.ForeignKey(User)
-    date = models.DateField(auto_now_add=True, db_index=True)
+    date = models.DateTimeField(auto_now_add=True, db_index=True)
     summary = models.CharField(max_length=256, blank=True)
     review = models.TextField()
 

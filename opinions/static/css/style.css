@@ -333,6 +333,7 @@ a:hover
 	width:365px;
 	border-radius:10px;
 	padding:10px;
+	overflow:hidden;
 }
 
 .split.left
@@ -643,12 +644,13 @@ ul.pages span
 	display:block;
 	padding:0 10px;
 	border-radius:10px;
-	background:#666;
+	background:#521450;
+	color:#fdf7fd;
 }
 
 ul.pages span
 {
-	color:#777;
+	color:#845883;
 	background:transparent;
 }
 

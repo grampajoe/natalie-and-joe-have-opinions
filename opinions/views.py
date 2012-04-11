@@ -14,7 +14,7 @@ def home(request):
     recent_opinions = Opinion.objects.all()[:10]
     recent_versus = VersusOpinion.objects.all()[:10]
     recent = sorted(list(recent_opinions) + list(recent_versus),
-            key=lambda r: r.date)[:10]
+            key=lambda r: r.date, reverse=True)[:10]
     random_things = Thing.get_random()
     return render_to_response('opinions/home.html', {'recent_opinions':
         recent, 'random_things': random_things},
@@ -29,7 +29,7 @@ def index(request):
     elif sort == 'unity':
         things = things.order_by('-unity')
     elif sort == 'date':
-        things = things.order_by('-opinions__date').distinct()
+        things = things.order_by('-opinions__date__date').distinct()
     else:
         sort = 'name'
 
