@@ -9,7 +9,7 @@ class Thing(models.Model):
     """A Thing we have Opinions about."""
     parent = models.ForeignKey('Thing', blank=True, null=True,
             related_name='children')
-    name = models.CharField(max_length=256, db_index=True, unique=True)
+    name = models.CharField(max_length=255, db_index=True, unique=True)
     image = models.ImageField(upload_to="images/things/", blank=True)
     slug = models.SlugField(db_index=True)
     versus = models.ManyToManyField('Thing', through='Versus',
