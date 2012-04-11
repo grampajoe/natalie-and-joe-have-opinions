@@ -28,8 +28,8 @@ def index(request):
         things = things.order_by('-rating')
     elif sort == 'unity':
         things = things.order_by('-unity')
-    elif sort == 'date':
-        things = things.order_by('-opinions__date__date').distinct()
+    #elif sort == 'date':
+    #    things = things.order_by('-opinions__date').distinct()
     else:
         sort = 'name'
 
