@@ -9,7 +9,7 @@
 </ul>
 {% endif %}
 {% endwith %}
-<h2 class="thing{% if thing.image %} image{% endif %}"{% if thing.image %} style="min-height:{{ thing.image.height|add:-20 }}px; background-image:url({{ thing.image.url }});"{% endif %}>{{ thing.name }}</h2>
+<h2 class="thing{% if thing.image %} image{% endif %}"{% if thing.image %} style="background-image:url({{ thing.image.url }});"{% endif %}>{{ thing.name }}</h2>
 	{% if thing.description %}<div class="description">{{ thing.description }}</div>{% endif %}
 	{% for opinion in thing.get_opinions %}
 	<div class="opinion split {% cycle 'left' 'right' %} {% cycle 'natalie' 'joe' as first_name %}">
