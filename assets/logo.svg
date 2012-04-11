@@ -19,19 +19,32 @@
    inkscape:export-xdpi="45"
    inkscape:export-ydpi="45">
   <defs
-     id="defs4" />
+     id="defs4">
+    <filter
+       inkscape:collect="always"
+       id="filter5585"
+       x="-0.021390554"
+       width="1.0427811"
+       y="-0.13482433"
+       height="1.2696487">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="3.8782222"
+         id="feGaussianBlur5587" />
+    </filter>
+  </defs>
   <sodipodi:namedview
      id="base"
-     pagecolor="#333333"
+     pagecolor="#521450"
      bordercolor="#666666"
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="403.73985"
-     inkscape:cy="144.75817"
+     inkscape:cx="457.85211"
+     inkscape:cy="41.229718"
      inkscape:document-units="px"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:showpageshadow="false"
      showborder="true"
@@ -66,41 +79,54 @@
   <g
      inkscape:groupmode="layer"
      id="layer3"
-     inkscape:label="Logo">
+     inkscape:label="Logo"
+     style="display:none"
+     sodipodi:insensitive="true">
     <path
        style="fill:#ffffff;fill-opacity:1;stroke:none"
-       d="M 110 20 C 93.644356 20 79.122323 27.858743 70 40 C 97.614238 40 120 62.385762 120 90 C 120 101.25859 116.27946 111.64243 110 120 C 137.61424 120 160 97.614238 160 70 C 160 42.385762 137.61424 20 110 20 z M 110 120 C 82.385762 120 60 97.614238 60 70 C 60 58.741406 63.720545 48.357572 70 40 C 42.385762 40 20 62.385762 20 90 C 20 117.61424 42.385762 140 70 140 C 86.355644 140 100.87768 132.14126 110 120 z "
-       id="path3844" />
+       d="m 110,20 c -16.355644,0 -30.877677,7.858743 -40,20 27.614238,0 50,22.385762 50,50 0,11.25859 -3.72054,21.64243 -10,30 27.61424,0 50,-22.385762 50,-50 0,-27.614238 -22.38576,-50 -50,-50 z m 0,100 C 82.385762,120 60,97.614238 60,70 60,58.741406 63.720545,48.357572 70,40 42.385762,40 20,62.385762 20,90 c 0,27.61424 22.385762,50 50,50 16.355644,0 30.87768,-7.85874 40,-20 z"
+       id="path3844"
+       inkscape:connector-curvature="0" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="Color Logo"
+     style="display:inline">
+    <g
+       id="g4398"
+       transform="translate(-180,-212)">
+      <path
+         id="path4396"
+         d="m 290,232 c -16.35564,0 -30.87768,7.85874 -40,20 27.61424,0 50,22.38576 50,50 0,11.25859 -3.72054,21.64243 -10,30 27.61424,0 50,-22.38576 50,-50 0,-27.61424 -22.38576,-50 -50,-50 z"
+         style="fill:#5297ff;fill-opacity:1;stroke:none"
+         inkscape:connector-curvature="0" />
+      <path
+         id="path4379"
+         d="m 290,332 c -27.61424,0 -50,-22.38576 -50,-50 0,-11.25859 3.72054,-21.64243 10,-30 -27.61424,0 -50,22.38576 -50,50 0,27.61424 22.38576,50 50,50 16.35564,0 30.87768,-7.85874 40,-20 z"
+         style="fill:#61ff52;fill-opacity:1;stroke:none"
+         inkscape:connector-curvature="0" />
+    </g>
   </g>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-892.36218)">
+     transform="translate(0,-892.36218)"
+     style="display:inline">
     <text
        xml:space="preserve"
-       style="font-size:45.01194763px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Mr Dafoe;-inkscape-font-specification:Mr Dafoe"
+       style="font-size:45.01194763000000165px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#fdf7fd;fill-opacity:1;stroke:none;font-family:Mr Dafoe;-inkscape-font-specification:Mr Dafoe"
        id="text3039"
        sodipodi:linespacing="125%"
        x="238.20906"
        y="1059.9617"
        transform="matrix(0.9961947,-0.08715574,0.08715574,0.9961947,0,0)"><tspan
          id="tspan3041"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;font-family:Mr Dafoe;-inkscape-font-specification:Mr Dafoe">About Literally Everything</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#fdf7fd;font-family:Mr Dafoe;-inkscape-font-specification:Mr Dafoe;fill-opacity:1">About Literally Everything</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:77.55355072px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Fredoka One;-inkscape-font-specification:Fredoka One"
-       x="176.89786"
-       y="972.466"
-       id="text3027"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan3029"
-         x="176.89786"
-         y="972.466">Natalie and Joe</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:39.79808044px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Fredoka One;-inkscape-font-specification:Fredoka One"
+       style="font-size:39.79808043999999967px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#fdf7fd;fill-opacity:1;stroke:none;font-family:Fredoka One;-inkscape-font-specification:Fredoka One"
        x="172.41862"
        y="1006.5699"
        id="text3820"
@@ -110,5 +136,57 @@
          x="172.41862"
          y="1006.5699"
          id="tspan3836">Have Opinions</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:45.01194763000000165px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff44b2;fill-opacity:1;stroke:none;display:inline;font-family:Mr Dafoe;-inkscape-font-specification:Mr Dafoe;filter:url(#filter5585)"
+       id="text3039-9"
+       sodipodi:linespacing="125%"
+       x="238.20906"
+       y="1059.9617"
+       transform="matrix(0.9961947,-0.08715574,0.08715574,0.9961947,0,0)"><tspan
+         id="tspan3041-9"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ff44b2;fill-opacity:1;font-family:Mr Dafoe;-inkscape-font-specification:Mr Dafoe">About Literally Everything</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Text"
+     style="display:inline">
+    <text
+       transform="translate(0,-892.36218)"
+       xml:space="preserve"
+       style="font-size:77.55400084999998001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#61ff52;fill-opacity:1;stroke:none;font-family:Fredoka One;-inkscape-font-specification:Fredoka One"
+       x="176.89784"
+       y="972.46619"
+       id="text3849"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3851"
+         x="176.89784"
+         y="972.46619">Natalie</tspan></text>
+    <text
+       transform="translate(0,-892.36218)"
+       xml:space="preserve"
+       style="font-size:77.55400084999999422px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#5297ff;fill-opacity:1;stroke:none;font-family:Fredoka One;-inkscape-font-specification:Fredoka One"
+       x="628.43445"
+       y="972.46619"
+       id="text3853"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3855"
+         x="628.43445"
+         y="972.46619">Joe</tspan></text>
+    <text
+       transform="translate(0,-892.36218)"
+       xml:space="preserve"
+       style="font-size:77.55400084999998001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#fdf7fd;fill-opacity:1;stroke:none;font-family:Fredoka One;-inkscape-font-specification:Fredoka One"
+       x="469.44742"
+       y="972.46619"
+       id="text3857"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3859"
+         x="469.44742"
+         y="972.46619">and</tspan></text>
   </g>
 </svg>

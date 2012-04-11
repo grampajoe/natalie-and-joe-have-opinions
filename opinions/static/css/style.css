@@ -7,7 +7,7 @@ body
 {
 	background:#ccc;
 	font:normal 16px/1.75em Asap,sans-serif;
-	color:#fff;
+	color:#fdf7fd;
 }
 
 ul
@@ -66,7 +66,7 @@ a:hover
 	padding:10px;
 	margin:0 auto 20px;
 	border-radius:0 0 10px 10px;
-	background:#333;
+	background:#521450;
 }
 
 /* Regular Pages */
@@ -112,6 +112,7 @@ a:hover
 	padding:5px;
 	border-radius:5px 0 0 5px;
 	font:normal 20px/26px Asap,sans-serif;
+	background:#fdf7fd;
 }
 
 #search input[type=submit]
@@ -143,7 +144,7 @@ a:hover
 	top:45px;
 	width:350px;
 	overflow:hidden;
-	background:#fff;
+	background:#fdf7fd;
 	border-radius:0 0 5px 5px;
 	font:normal 20px/1.2em Asap,sans-serif;
 	color:#333;
@@ -204,7 +205,36 @@ a:hover
 .home #header h1 a
 {
 	padding-top:160px;
-	background-image:url('../images/logo.png');
+	background-image:url('../images/logo_flicker.png');
+	background-position:top;
+	-webkit-transition:none;
+	-webkit-animation-name:logo-flicker;
+	-webkit-animation-duration:15s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:step-end;
+}
+
+@-webkit-keyframes logo-flicker
+{
+	0%
+	{
+		background-position:top;
+	}
+
+	95%
+	{
+		background-position:bottom;
+	}
+
+	96%
+	{
+		background-position:top;
+	}
+
+	97%
+	{
+		background-position:bottom;
+	}
 }
 
 .home #search
@@ -235,7 +265,7 @@ a:hover
 
 .home #search .results
 {
-	top:50px;
+	top:51px;
 	width:560px;
 	border-radius:0 0 10px 10px;
 	font:normal 24px/32px Arial,Helvetica,sans-serif;
