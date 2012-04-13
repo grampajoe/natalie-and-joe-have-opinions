@@ -11,6 +11,7 @@ class ThingAdmin(admin.ModelAdmin):
     inlines = [
         OpinionInline,
             ]
+    search_fields = ['name']
 
 class VersusOpinionInline(admin.StackedInline):
     model = VersusOpinion
@@ -20,6 +21,7 @@ class VersusAdmin(admin.ModelAdmin):
     inlines = [
         VersusOpinionInline,
             ]
+    search_fields = ['thing_one__name', 'thing_two__name']
 
 admin.site.register(Thing, ThingAdmin)
 admin.site.register(Versus, VersusAdmin)
