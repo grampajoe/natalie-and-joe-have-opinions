@@ -1,4 +1,5 @@
 {% extends 'opinions/base.html' %}
+{% block title-pre %}{{ thing }} - {% endblock %}
 {% block content %}
 {% with parents=thing.get_parents %}
 {% if parents %}
