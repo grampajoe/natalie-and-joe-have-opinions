@@ -1,4 +1,5 @@
 {% extends 'opinions/base.html' %}
+{% block title-pre %}Browse - {% endblock %}
 {% block content %}
 <ul class="sort">
 	<li{% if sort == 'unity' %} class="active"{% endif %}><a title="Sort by how well we agree on things." href="?sort=unity">Unity</a></li>

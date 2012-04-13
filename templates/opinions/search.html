@@ -1,4 +1,5 @@
 {% extends 'opinions/base.html' %}
+{% block title-pre %}Search for "{{ term }}" - {% endblock %}
 {% block body-class %}search{% endblock %}
 {% block content %}
 <h3>Search: "<span class="search_term">{{ term }}</span>"</h3>
