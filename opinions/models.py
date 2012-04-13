@@ -166,6 +166,7 @@ class Versus(models.Model):
 
     class Meta(object):
         unique_together = ('thing_one', 'thing_two')
+        verbose_name_plural = 'versuses'
 
 class VersusOpinion(Review):
     versus = models.ForeignKey('Versus', related_name='opinions')
