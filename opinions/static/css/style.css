@@ -393,13 +393,6 @@ ul.opinions li:hover a.rating.natalie
 	margin:30px 10px;
 }
 
-.opinion .review:first-letter
-{
-	display:block;
-	float:left;
-	font:bold 2em/0.6em Asap,sans-serif;
-}
-
 .opinion .review p
 {
 	text-indent:1.5em;
