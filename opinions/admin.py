@@ -7,7 +7,7 @@ class OpinionInline(admin.StackedInline):
 
 class PictureInline(admin.TabularInline):
     model = Picture
-    fields = ('image', 'description')
+    fields = ('image', 'description', 'label')
 
 class ThingAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}

@@ -430,6 +430,25 @@ ul.opinions li:hover a.rating.natalie
 	background:#521450;
 }
 
+.opinion a.image
+{
+	display:block;
+	margin:10px 0;
+	background:#290A28;
+	color:#fff;
+	text-align:center;
+	line-height:0;
+}
+
+.opinion a.image span
+{
+	display:block;
+	padding:5px 10px;
+	background:#633662;
+	font:normal italic 14px/1.5em Asap,sans-serif;
+	text-align:left;
+}
+
 .meta
 {
 	margin:10px 0 0;

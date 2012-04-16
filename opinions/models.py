@@ -7,8 +7,27 @@ import tempfile
 import random
 import markdown
 import os
+import re
 
-class Thing(models.Model):
+class HasPictures(object):
+    def insert_pictures(self, mdstr):
+        """Replace picture pseudo-markdown with actual markdown."""
+        pictures = self.pictures.all()
+        for picture in pictures:
+            if not picture.label or not len(picture.label):
+                continue
+
+            if picture.description and len(picture.description):
+                fmt = u'<a class="image" href="{2}">'+\
+                        '![{0}]({1})<span>{0}</span></a>'
+            else:
+                fmt = u'<a class="image" href="{2}">![{0}]({1})</a>'
+            mdstr = re.sub(r'\?\[{0}\]'.format(picture.label),
+                    fmt.format(picture.description,
+                        picture.thumbnail.url, picture.image.url), mdstr)
+        return mdstr
+
+class Thing(HasPictures, models.Model):
     """A Thing we have Opinions about."""
     parent = models.ForeignKey('Thing', blank=True, null=True,
             related_name='children')
@@ -93,7 +112,7 @@ class Review(models.Model):
     review = models.TextField()
 
     def html_review(self):
-        return markdown.markdown(self.review)
+        return markdown.markdown(self.get_review())
 
     class Meta(object):
         abstract = True
@@ -103,6 +122,9 @@ class Opinion(Review):
     """An opinion of a Thing."""
     thing = models.ForeignKey('Thing', related_name='opinions')
     rating = models.FloatField()
+
+    def get_review(self):
+        return self.thing.insert_pictures(self.review)
     
     def inverse_rating(self):
         return settings.MAX_RATING - self.rating
@@ -135,6 +157,7 @@ class Picture(models.Model):
     thumbnail = models.ImageField(upload_to='images/things/thumbs/',
             blank=True)
     description = models.CharField(max_length=255, blank=True)
+    label = models.CharField(max_length=32, blank=True)
 
     thumb_size = (365,400)
 
@@ -150,7 +173,7 @@ class Picture(models.Model):
         os.unlink(tmppath)
         super(Picture, self).save(*args, **kwargs)
 
-class Versus(models.Model):
+class Versus(HasPictures, models.Model):
     thing_one = models.ForeignKey('Thing', related_name='versus_one')
     thing_two = models.ForeignKey('Thing', related_name='versus_two')
 
@@ -199,6 +222,9 @@ class VersusOpinion(Review):
     versus = models.ForeignKey('Versus', related_name='opinions')
     winner = models.ForeignKey('Thing', related_name='versus_wins', blank=True,
             null=True)
+
+    def get_review(self):
+        return self.versus.insert_pictures(self.review)
 
     def __unicode__(self):
         return unicode(self.versus)
