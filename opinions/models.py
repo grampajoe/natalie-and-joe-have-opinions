@@ -1,13 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 from PIL import Image
 from django.core.files import File
 import tempfile
 import random
 import markdown
 import os
-
-MAX_RATING = 5
 
 class Thing(models.Model):
     """A Thing we have Opinions about."""
@@ -40,7 +39,7 @@ class Thing(models.Model):
         
         # Unity is the maximum rating minus the absolute difference between ratings
         if len(opinions) > 1:
-            self.unity = MAX_RATING - reduce(lambda a, b: abs(a.rating -
+            self.unity = settings.MAX_RATING - reduce(lambda a, b: abs(a.rating -
                     b.rating), opinions)
         else:
             # Unity is undefined if one hasn't rated
@@ -106,7 +105,7 @@ class Opinion(Review):
     rating = models.FloatField()
     
     def inverse_rating(self):
-        return MAX_RATING - self.rating
+        return settings.MAX_RATING - self.rating
 
     def __unicode__(self):
         return unicode(self.thing)

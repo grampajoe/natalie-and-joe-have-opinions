@@ -145,3 +145,4 @@ LOGGING = {
 
 # App Specific Settings
 THINGS_PER_PAGE = 20
+MAX_RATING = 5.0
