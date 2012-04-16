@@ -1,7 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from PIL import Image
+from django.core.files import File
+import tempfile
 import random
 import markdown
+import os
 
 MAX_RATING = 5
 
@@ -122,6 +126,30 @@ class Opinion(Review):
     class Meta(object):
         ordering = ['-date']
         unique_together = ('user', 'thing')
+
+class Picture(models.Model):
+    thing = models.ForeignKey('Thing', related_name='pictures', blank=True,
+            null=True)
+    versus = models.ForeignKey('Versus', related_name='pictures', blank=True,
+            null=True)
+    image = models.ImageField(upload_to='images/things/')
+    thumbnail = models.ImageField(upload_to='images/things/thumbs/',
+            blank=True)
+    description = models.CharField(max_length=255, blank=True)
+
+    thumb_size = (365,400)
+
+    def save(self, *args, **kwargs):
+        """Generate a thumbnail."""
+        super(Picture, self).save(*args, **kwargs)
+        image = Image.open(self.image.path)
+        thumb = image.copy()
+        thumb.thumbnail(self.thumb_size, Image.ANTIALIAS)
+        fp, tmppath = tempfile.mkstemp()
+        thumb.save(tmppath, image.format)
+        self.thumbnail.save(self.image.name, File(open(tmppath)), save=False)
+        os.unlink(tmppath)
+        super(Picture, self).save(*args, **kwargs)
 
 class Versus(models.Model):
     thing_one = models.ForeignKey('Thing', related_name='versus_one')

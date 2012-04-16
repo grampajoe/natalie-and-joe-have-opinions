@@ -1,15 +1,20 @@
 from django.contrib import admin
-from models import Thing, Opinion, Versus, VersusOpinion
+from models import Thing, Opinion, Versus, VersusOpinion, Picture
 
 class OpinionInline(admin.StackedInline):
     model = Opinion
     max_num = 2
+
+class PictureInline(admin.TabularInline):
+    model = Picture
+    fields = ('image', 'description')
 
 class ThingAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     readonly_fields = ('rating', 'unity')
     inlines = [
         OpinionInline,
+        PictureInline,
             ]
     search_fields = ['name']
 
@@ -20,6 +25,7 @@ class VersusOpinionInline(admin.StackedInline):
 class VersusAdmin(admin.ModelAdmin):
     inlines = [
         VersusOpinionInline,
+        PictureInline,
             ]
     search_fields = ['thing_one__name', 'thing_two__name']
 
