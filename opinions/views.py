@@ -58,7 +58,7 @@ def versus(request, slug1, slug2):
     try:
         v = Versus.get_by_slugs(slug1, slug2)
     except Versus.DoesNotExist:
-        return Http404()
+        raise Http404()
     return render_to_response('opinions/versus.html', {'versus': v},
             context_instance=RequestContext(request))
 
