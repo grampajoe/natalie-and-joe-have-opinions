@@ -396,7 +396,7 @@ ul.opinions li:hover a.rating.natalie
 .opinion .review p
 {
 	text-indent:1.5em;
-	margin:0 0 10px 0;
+	margin:0;
 }
 
 .opinion .review p:first-child
