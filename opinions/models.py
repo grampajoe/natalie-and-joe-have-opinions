@@ -18,10 +18,10 @@ class HasPictures(object):
                 continue
 
             if picture.description and len(picture.description):
-                fmt = u'<a class="image" href="{2}">'+\
-                        '![{0}]({1})<span>{0}</span></a>'
+                fmt = u'<div class="image"><a href="{2}">'+\
+                        '![{0}]({1})</a><span>{0}</span></div>'
             else:
-                fmt = u'<a class="image" href="{2}">![{0}]({1})</a>'
+                fmt = u'<div class="image"><a href="{2}">![{0}]({1})</a></div>'
             mdstr = re.sub(r'\?\[{0}\]'.format(picture.label),
                     fmt.format(picture.description,
                         picture.thumbnail.url, picture.image.url), mdstr)

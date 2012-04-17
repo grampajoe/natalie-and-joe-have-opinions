@@ -430,7 +430,7 @@ ul.opinions li:hover a.rating.natalie
 	background:#521450;
 }
 
-.opinion a.image
+.opinion div.image
 {
 	display:block;
 	margin:10px 0;
@@ -440,7 +440,7 @@ ul.opinions li:hover a.rating.natalie
 	line-height:0;
 }
 
-.opinion a.image span
+.opinion div.image span
 {
 	display:block;
 	padding:5px 10px;
