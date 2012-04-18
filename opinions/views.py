@@ -106,3 +106,6 @@ class RecentOpinionsRSS(Feed):
 
     def item_description(self, item):
         return None
+
+    def item_pubdate(self, item):
+        return item.date
