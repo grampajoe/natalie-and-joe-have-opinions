@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.core import serializers
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
+from django.contrib.syndication.views import Feed
 import json
 
 def home(request):
@@ -86,3 +87,22 @@ def autocomplete(request, partial):
 
     return HttpResponse(json.dumps(map(lambda thing: [thing.name,
             thing.get_absolute_url()], things)), mimetype="application/json")
+
+
+class RecentOpinionsRSS(Feed):
+    title = "Natalie and Joe Have Opinions About Literally Everything"
+    link = "/"
+    description = "Opinions from Natalie and Joe."
+
+    def items(self):
+        recent_opinions = Opinion.objects.all()[:10]
+        recent_versus = VersusOpinion.objects.all()[:10]
+        recent = sorted(list(recent_opinions) + list(recent_versus),
+                key=lambda r: r.date, reverse=True)[:10]
+        return recent
+
+    def item_title(self, item):
+        return u'{0} on {1}'.format(item.user.first_name, unicode(item))
+
+    def item_description(self, item):
+        return None
