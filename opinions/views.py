@@ -92,7 +92,7 @@ def autocomplete(request, partial):
 class RecentOpinionsRSS(Feed):
     title = "Natalie and Joe Have Opinions About Literally Everything"
     link = "/"
-    description = "Opinions from Natalie and Joe."
+    description = "Opinions from Natalie and Joe about all the things."
 
     def items(self):
         recent_opinions = Opinion.objects.all()[:10]
