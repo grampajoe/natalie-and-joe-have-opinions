@@ -22,7 +22,8 @@ h3
 }
 
 h3:first-child,
-.sort + h3
+.sort + h3,
+.rss + h3
 {
 	margin:0 0 10px;
 }
@@ -361,6 +362,24 @@ a:hover
 .error
 {
 	opacity:0.2;
+}
+
+.rss
+{
+	display:block;
+	width:28px;
+	height:28px;
+	float:right;
+	margin:2px 0 0 0;
+	background:transparent url('../images/feed-icon-28x28.png') 50% 50%;
+	text-indent:28px;
+	overflow:hidden;
+	opacity:0.5;
+}
+
+.rss:hover
+{
+	opacity:1;
 }
 
 .opinion h3

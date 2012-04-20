@@ -2,6 +2,7 @@
 {% block body-class %}home{% endblock %}
 {% block content %}
 	<div id="recent" class="split bare left">
+		<a class="rss" href="{% url opinions_rss %}">RSS</a>
 		<h3>Recent Opinions</h3>
 		{% if recent_opinions %}
 		<ul class="opinions">
