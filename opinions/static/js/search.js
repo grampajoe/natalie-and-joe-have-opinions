@@ -61,7 +61,6 @@
 
     if (list && partial.length && data.length) {
       $(data).each(function(i, item) {
-        // TODO: Use anchor elements instead of binding to an LI's onclick
         var elem = $('<li><a href="'+item[1]+'">'+highlight(item[0], partial)+'</a></li>'),
             obj = {elem: elem, name: item[0], url: item[1]};
 
