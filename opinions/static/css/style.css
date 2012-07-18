@@ -156,18 +156,20 @@ a:hover
 	display:none;
 }
 
-#search .results li
+#search .results a 
 {
+        display:block;
 	padding:3px 5px;
 	border-radius:5px;
+        color: inherit;
 }
 
-#search .results li:hover
+#search .results a:hover
 {
 	cursor:pointer;
 }
 
-#search .results .selected
+#search .results .selected a
 {
 	background:#ffddfb;
 }
@@ -304,7 +306,7 @@ a:hover
 	font:normal 24px/32px Arial,Helvetica,sans-serif;
 }
 
-.home #search .results li
+.home #search .results a
 {
 	padding:5px 10px;
 	border-radius:10px;

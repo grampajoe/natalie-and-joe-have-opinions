@@ -1,8 +1,9 @@
 <div id="header">
 	<h1><a href="{% url home %}">Natalie and Joe Have Opinions about Literally Everything</a></h1>
 	<form id="search" name="search" action="{% url search_blank %}">
-		<input type="text" name="term" value="" />
+		<input type="text" id="search_term" name="term" value="" />
 		<input type="submit" value="Search" />
+                <ul id="search_results" class="results"></ul>
 		<a class="browse" href="{% url index %}">Browse</a>
 	</form>
 </div>

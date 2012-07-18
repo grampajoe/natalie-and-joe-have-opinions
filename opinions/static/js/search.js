@@ -1,137 +1,124 @@
-var results = [];
-var selected = null;
+(function() {
+  var results = [],
+      selected = null,
+      history = {},
+      lastPartial = '',
+      searchTimeout = null,
+      searchDelay = 300,
+      input = $('#search_term'),
+      list = $('#search_results');
 
-var history = {};
-var lastPartial = '';
-var searchTimeout = null;
-var searchDelay = 300;
-var input = null;
+  // Hide the results list if anything but the input is clicked
+  function hide(e) {
+    if (e.target !== input[0]) {
+      displayList([], '');
+    }
 
-function hide(e)
-{
-	if (e.target != input)
-		display_list(input, [], '');
-	return true;
-}
+    return true;
+  }
 
-function autocomplete(e)
-{
-	// esc
-	if (e.which == 27)
-	{
-		this.value = lastPartial;
-		display_list(this, [], '');
-		return true;
-	}
+  function autocomplete(e)
+  {
+    // esc
+    if (e.which == 27) {
+      input.val(lastPartial);
+      displayList([], '');
 
-	// up or down
-	if ((e.which == 38 || e.which == 40) && selected) return true;
+      return true;
+    }
 
-	var field = this;
-	var partial = lastPartial = field.value;
+    // up or down
+    if ((e.which == 38 || e.which == 40) && selected) {
+      return true;
+    }
 
-	clearTimeout(searchTimeout);
+    var partial = lastPartial = input.val();
 
-	if (partial in history)
-	{
-		display_list(field, history[partial], partial);
-	}
-	else if (partial.length)
-	{
-		searchTimeout = setTimeout(function() {
-			$.getJSON('/autocomplete/'+partial, null, function(data) {
-				history[partial] = data;
-				display_list(field, data, partial);
-			});
-		}, searchDelay);
-	}
-	else
-	{
-		display_list(field, [], partial);
-	}
+    clearTimeout(searchTimeout);
 
-	return true;
-}
+    if (history.hasOwnProperty(partial)) {
+      // Display cached results
+      displayList(history[partial], partial);
+    } else if (partial.length) {
+      searchTimeout = setTimeout(function() {
+        $.getJSON('/autocomplete/'+partial, null, function(data) {
+          history[partial] = data;
+          displayList(data, partial);
+        });
+      }, searchDelay);
+    } else {
+      displayList([], partial);
+    }
 
-function display_list(field, data, partial)
-{
-	var list = $('#search .results').html('').removeClass('hidden');
-	results = [];
-	selected = null;
+    return true;
+  }
 
-	if (list && partial.length && data.length)
-	{
-		$(data).each(function(i, item) {
-			var elem = $('<li>'+highlight(item[0], partial)+'</li>').click(function() {
-				window.location = item[1];
-			});
+  function displayList(data, partial) {
+    // Clear previous results
+    list.html('');
+    results = [];
+    selected = null;
 
-			var obj = {elem: elem, name: item[0], url: item[1]};
+    if (list && partial.length && data.length) {
+      $(data).each(function(i, item) {
+        // TODO: Use anchor elements instead of binding to an LI's onclick
+        var elem = $('<li><a href="'+item[1]+'">'+highlight(item[0], partial)+'</a></li>'),
+            obj = {elem: elem, name: item[0], url: item[1]};
 
-			$(elem).hover(function() {
-				$(this).siblings().removeClass('selected');
-				$(this).addClass('selected');
-				selected = obj;
-			});
+        $(elem).hover(function() {
+          $(this).siblings().removeClass('selected');
+          $(this).addClass('selected');
+          selected = obj;
+        });
 
-			$(list).append(elem);
-			results.push(obj);
-		})
-	}
-	else
-	{
-		$('#search .results').addClass('hidden');
-	}
-}
+        list.append(elem);
+        results.push(obj);
+      })
+    }
+  }
 
-function highlight(name, partial)
-{
-	return name.replace(new RegExp('('+partial+')', 'i'), '<strong>$1</strong>');
-}
+  function highlight(name, partial) {
+    return name.replace(new RegExp('('+partial+')', 'ig'), '<strong>$1</strong>');
+  }
 
-function select(e)
-{
-	if (e.which == 13 && selected)
-	{
-		window.location = selected.url;
-		return false;
-	}
+  function select(e) {
+    if (e.which == 13 && selected) {
+      window.location = selected.url;
+      return false;
+    }
 
-	if (!results.length || (e.which != 38 && e.which != 40)) return;
+    if (!results.length || (e.which != 38 && e.which != 40)) return;
 
-	var down = (e.which == 40) ? true : false;
+    var down = (e.which == 40) ? true : false,
+        field = this,
+        current = selected || results[0];
 
-	var field = this;
-	var current = selected || results[0];
+    if (current) {
+      if (selected || !down) {
+        var i = (down) ? results.indexOf(current) + 1 : results.indexOf(current) - 1;
 
-	if (current)
-	{
-		if (selected || !down)
-		{
-			var i = (down) ? results.indexOf(current) + 1 : results.indexOf(current) - 1;
-			if (i >= results.length) i = 0;
-			else if (i < 0) i = results.length - 1;
+        if (i >= results.length) {
+          i = 0;
+        } else if (i < 0) {
+          i = results.length - 1;
+        }
 
-			next = results[i];
-		}
-		else
-		{
-			next = current;
-		}
+        next = results[i];
+      } else {
+        next = current;
+      }
 
-		selected = next;
+      selected = next;
 
-		$(next.elem).siblings().removeClass('selected');
-		$(next.elem).addClass('selected');
+      $(next.elem).siblings().removeClass('selected');
+      $(next.elem).addClass('selected');
 
-		$(field).val(next.name);
-	}
+      $(field).val(next.name);
+    }
 
-	return false;
-}
+    return false;
+  }
 
-$(document).ready(function() {
-	input = $('#search input[name=term]')[0];
-	$(input).keyup(autocomplete).keydown(select).parent().append('<ul class="results hidden"></ul>');
-	$(window).click(hide);
-});
+  input.keyup(autocomplete).keydown(select);
+  $(window).click(hide);
+})();
