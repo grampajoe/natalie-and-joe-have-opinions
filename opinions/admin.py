@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django import forms
 from models import Thing, Opinion, Versus, VersusOpinion, Picture
 
 class OpinionInline(admin.StackedInline):
@@ -9,6 +10,12 @@ class PictureInline(admin.TabularInline):
     model = Picture
     fields = ('image', 'description', 'label')
 
+class ThingForm(forms.ModelForm):
+    image = forms.ImageField(help_text="Minimum 780px wide.")
+
+    class Meta:
+        model = Thing
+
 class ThingAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     readonly_fields = ('rating', 'unity')
@@ -17,6 +24,7 @@ class ThingAdmin(admin.ModelAdmin):
         PictureInline,
             ]
     search_fields = ['name']
+    form = ThingForm
 
 class VersusOpinionInline(admin.StackedInline):
     model = VersusOpinion
