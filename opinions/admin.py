@@ -2,16 +2,25 @@ from django.contrib import admin
 from django import forms
 from models import Thing, Opinion, Versus, VersusOpinion, Picture
 
+class OpinionForm(forms.ModelForm):
+    review = forms.CharField(help_text='*italic* **bold** [link](url)',
+        widget=forms.Textarea(attrs={'rows': 10, 'cols': 40,
+            'class': 'vLargeTextField'}))
+
+    class Meta:
+        model = Opinion
+
 class OpinionInline(admin.StackedInline):
     model = Opinion
     max_num = 2
+    form = OpinionForm
 
 class PictureInline(admin.TabularInline):
     model = Picture
     fields = ('image', 'description', 'label')
 
 class ThingForm(forms.ModelForm):
-    image = forms.ImageField(help_text="Minimum 780px wide.")
+    image = forms.ImageField(help_text='Minimum 780px wide.')
 
     class Meta:
         model = Thing
