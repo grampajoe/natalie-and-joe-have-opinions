@@ -90,7 +90,7 @@ class Thing(HasPictures, models.Model):
                 things.update(Thing.objects.filter(id__in=ids))
             things = list(things)
             random.shuffle(things)
-            return things
+            return things[:n]
         else:
             return Thing.objects.order_by('?')
 
