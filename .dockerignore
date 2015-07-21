@@ -1,0 +1,7 @@
+*.py[co]
+*.swp
+*.db
+env/
+static/
+media/images/things/
+reviews/

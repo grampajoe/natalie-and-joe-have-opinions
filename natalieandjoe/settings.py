@@ -1,9 +1,10 @@
-# Django settings for natalieandjoe project.
 import os
+
+import dj_database_url
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
-DEBUG = True
+DEBUG = bool(os.environ.get('DEBUG', False))
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -12,16 +13,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'natalieandjoe.db',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
-}
+DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URI', 'sqlite:///natalieandjoe.db'))}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -80,13 +72,13 @@ STATICFILES_DIRS = (
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
+#    'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '#j591&g9=&g1x-k^379w+2+s0)9aa5_d!ysn(23m(8)98a6!=2'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'butt')
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -131,20 +123,35 @@ INSTALLED_APPS = (
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        }
+    },
     'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler'
+        'stdout': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
         }
     },
     'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
+        'django': {
+            'handlers': ['stdout'],
+            'level': 'INFO',
             'propagate': True,
-        },
+        }
     }
 }
+
+# Storage
+if os.environ.get('USE_S3_STORAGE', False):
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', 'natalieandjoe')
+    STATIC_URL = 'https://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 
 # App Specific Settings
 THINGS_PER_PAGE = 20
