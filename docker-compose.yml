@@ -6,6 +6,7 @@ app:
     - 'PORT=80'
     - 'DEBUG=True'
     - 'DATABASE_URI=mysql://natalieand:joe@mysql/haveopinions'
+    - NEW_RELIC_LICENSE_KEY
   links:
     - 'mysql:mysql'
   volumes:
