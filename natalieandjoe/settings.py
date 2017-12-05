@@ -13,7 +13,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URI', 'sqlite:///natalieandjoe.db'))}
+DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL', 'sqlite:///natalieandjoe.db'))}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

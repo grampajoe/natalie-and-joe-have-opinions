@@ -1,0 +1,21 @@
+{
+  "name": "Natalie and Joe Have Opinions",
+  "description": "A site about things we have opinions about.",
+  "keywords": [
+    "opinions",
+    "nonsense"
+  ],
+  "addons": [
+    {
+      "plan": "heroku-postgresql:hobby-dev"
+    }
+  ],
+  "env": {
+    "PORT": "5000",
+    "DEBUG": "False",
+    "SECRET_TOKEN": {
+      "description": "Cookie secret token.",
+      "generator": "secret"
+    }
+  }
+}
