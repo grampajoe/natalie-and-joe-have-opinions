@@ -7,7 +7,7 @@ dj-database-url==0.3.0
 django-storages==1.1.8
 eventlet==0.17.4
 greenlet==0.4.7
-gunicorn==19.3.0
+gunicorn==19.4.0
 mysql==0.0.1
 newrelic==2.52.0.40
 wsgiref==0.1.2
